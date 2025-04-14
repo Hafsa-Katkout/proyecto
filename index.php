@@ -14,7 +14,7 @@
 
     html, body {
       height: 100%;
-      background: url('hero-bg.jpg') no-repeat center center fixed;
+      background: url('/images/p.inicio.jpg') no-repeat center center fixed;
       background-size: cover;
       color: white;
       overflow-x: hidden;
@@ -47,7 +47,7 @@
     nav .logo {
       font-size: 24px;
       font-weight: bold;
-      color: skyblue;
+      color: white;
       text-shadow: 0 0 10px white;
     }
 
@@ -62,7 +62,7 @@
       text-decoration: none;
       font-weight: 500;
       transition: color 0.3s;
-      text-shadow: 0 0 10px white;
+      text-shadow: none;
     }
 
     nav ul li a:hover {
@@ -108,6 +108,7 @@
       box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
       transition: background-color 0.3s, color 0.3s;
       backdrop-filter: blur(10px);
+      text-shadow: 0 0 8px white;
     }
 
     .hero-buttons a:hover {
@@ -122,7 +123,7 @@
     .bottom-left,
     .logo-section {
       background-color: rgba(255, 255, 255, 0.08);
-      color: black;
+      color: white;
       padding: 20px;
       border-radius: 10px;
       backdrop-filter: blur(15px);
@@ -135,7 +136,7 @@
     .logo-section h3,
     .services h2,
     .why-choose h2 {
-      color: skyblue;
+      color: white;
       text-shadow: 0 0 10px white;
     }
 
@@ -143,11 +144,13 @@
       display: flex;
       justify-content: space-around;
       margin: 40px 10%;
-      text-shadow: 0 0 8px white;
+      text-shadow: none;
     }
 
     .stats div {
       font-weight: bold;
+      color: white;
+      text-shadow: none;
     }
 
     section {
@@ -167,7 +170,8 @@
 
     .service-icons div {
       width: 22%;
-      text-shadow: 0 0 8px white;
+      color: white;
+      text-shadow: none;
     }
 
     .why-cards {
@@ -178,7 +182,8 @@
 
     .why-cards .card {
       width: 30%;
-      text-shadow: 0 0 8px white;
+      color: white;
+      text-shadow: none;
     }
 
     .bottom-section {
@@ -197,13 +202,20 @@
     .bottom-right p {
       text-align: center;
       font-style: italic;
-      text-shadow: 0 0 8px white;
+      color: white;
+      text-shadow: none;
+    }
+
+    .bottom-left p {
+      color: white;
+      text-shadow: none;
     }
 
     .logo-section {
       text-align: center;
       margin: 40px 10%;
-      text-shadow: 0 0 8px white;
+      color: white;
+      text-shadow: none;
     }
 
     .logo-placeholder {
@@ -219,8 +231,6 @@
     }
   </style>
 </head>
-<body>
-  <!-- rest of body stays the same -->
 <body>
   <header>
     <nav>
@@ -238,8 +248,8 @@
       <h1>Deja que el mundo conozca SysFero</h1>
       <p>La plataforma inteligente para automatizar, gestionar y hacer crecer tu negocio como nunca antes.</p>
       <div class="hero-buttons">
-        <a href="login.html">Iniciar Sesión</a>
-        <a href="registrar.html">Registrar</a>
+        <a href="login.php">Iniciar Sesión</a>
+        <a href="registro.php">Registrar</a>
       </div>
     </div>
 
@@ -287,9 +297,9 @@
       <p>SysFero es una compañía enfocada en brindar soluciones digitales completas para empresas que desean optimizar su flujo de trabajo, conectar mejor con sus clientes y mantenerse a la vanguardia tecnológica.</p>
     </div>
     <div class="bottom-right">
-      <img src="https://img.freepik.com/fotos-premium/doble-exposicion-holograma-dibujo-tema-datos-sobre-fondo-mesa-trabajo-vista-superior-concepto-tecnologia-computadora_700248-54978.jpg?uid=R135752407&ga=GA1.1.1981654414.1743412727&semt=ais_hybrid&w=740" alt="img1">
+      <img src="https://img.freepik.com/fotos-premium/doble-exposicion-holograma-dibujo-tema-datos-sobre-fondo-mesa-trabajo-vista-superior-concepto-tecnologia-computadora_700248-54978.jpg" alt="img1">
       <p>whatever</p>
-      <img src="https://img.freepik.com/fotos-premium/doble-exposicion-manos-hombres-escribiendo-sobre-teclado-computadora-dibujo-hologramas-tema-tecnologico-vista-superior-concepto-tecnologico_700248-73023.jpg?uid=R135752407&ga=GA1.1.1981654414.1743412727&semt=ais_hybrid&w=740" alt="img2">
+      <img src="https://img.freepik.com/fotos-premium/doble-exposicion-manos-hombres-escribiendo-sobre-teclado-computadora-dibujo-hologramas-tema-tecnologico-vista-superior-concepto-tecnologico_700248-73023.jpg" alt="img2">
       <p>whatever</p>
     </div>
   </section>
