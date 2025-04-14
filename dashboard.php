@@ -1,24 +1,22 @@
-<?php
-session_start();
-echo "<pre>";
-print_r($_SESSION);
-echo "</pre>";
-if (!isset($_SESSION['usuario_id'])) {
-    echo "Sesión no iniciada. Redirigiendo a login...";
-    header("Location: login.php");
-    exit();
-}
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Panel de Control</title>
+    <title>Dashboard</title>
 </head>
 <body>
-    <h1>Bienvenido al panel de control</h1>
-    <p>Tu ID de usuario es: <?php echo $_SESSION['usuario_id']; ?></p>
-    <a href="logout.php">Cerrar sesión</a>
+
+    <h2>Panel de control de copias de seguridad</h2>
+
+    <form action="ejecutar.php" method="get">
+        <input type="hidden" name="tipo" value="linux">
+        <button type="submit">Backup Linux</button>
+    </form>
+
+    <form action="ejecutar.php" method="get">
+        <input type="hidden" name="tipo" value="windows">
+        <button type="submit">Backup Windows</button>
+    </form>
+
 </body>
 </html>
