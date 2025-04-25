@@ -1,0 +1,35 @@
+---
+- name: Backup en máquinas Linux a AWS con nombre dinámico
+  hosts: linux
+  become: yes
+  tasks:
+    - name: Crear carpeta de backup
+      file:
+        path: /tmp/backup/
+        state: directory
+
+    - name: Comprimir /etc
+      command: tar czf /tmp/backup/etc_backup.tar.gz /etc
+
+    #- name: Obtener el nombre de la máquina y la fecha automáticamente
+    #  set_fact:
+     #   backup_name: "{{ inventory_hostname }}_linux_{{ ansible_date_time.date }}_{{ ansible_date_time.hour }}{{ ansible_date_time.minute }}.tar.gz"
+
+   # - name: Renombrar el archivo con el nombre dinámico
+    #  command: mv /tmp/backup/etc_backup.tar.gz /tmp/backup/{{ backup_name }
+              #- name: Copiar el backup a AWS
+              #copy:
+              #  src: /tmp/backup/etc_backup.tar.gz
+              #  dest: /home/ubuntu/
+    - name: copiar la carpeta comprimida
+      command: cp /tmp/backup/etc_backup.tar.gz /home/ubuntu
+
+       # mode: push
+        #ansible_ssh_user: ubuntu
+        #ansible_ssh_private_key_file: "/home/usuario/.ssh/labsuser.pem"
+        #ansible_host: 44.218.152.238
+
+    - name: Limpiar archivo de backup local
+      file:
+        path: /tmp/backup/etc_backup.tar.gz
+        state: absent

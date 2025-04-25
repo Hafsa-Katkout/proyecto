@@ -1,0 +1,32 @@
+---
+- name: Backup en máquinas Windows a AWS con nombre dinámico
+  hosts: windows
+  tasks:
+    - name: Crear carpeta de backup en Windows
+      win_file:
+        path: C:\backup
+        state: directory
+
+    - name: Comprimir carpeta System32
+      win_command: powershell.exe -Command "Compress-Archive -Path C:\Windows\System32 -DestinationPath C:\backup\system32.zip"
+
+    - name: Obtener el nombre de la máquina y la fecha automáticamente
+      set_fact:
+        backup_name: "{{ inventory_hostname }}_windows_{{ ansible_date_time.date }}_{{ ansible_date_time.hour }}{{ ansible_date_time.minute }}.zip"
+
+    - name: Renombrar el archivo con el nombre dinámico
+      win_command: Rename-Item -Path C:\backup\system32.zip -NewName C:\backup\{{ backup_name }}
+
+    - name: Copiar el backup a AWS
+      win_copy:
+        src: C:\backup\{{ backup_name }}
+        dest: \\ruta\en\aws\server\backup\
+        remote_src: yes
+        ansible_ssh_user: usuario_aws
+        ansible_ssh_private_key_file: "/ruta/a/tu/clave/privada"
+        ansible_host: ip_de_aws
+
+    - name: Limpiar archivo de backup local
+      win_file:
+        path: C:\backup\{{ backup_name }}
+        state: absent

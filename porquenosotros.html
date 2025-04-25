@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SysFero</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body, html {
+      height: 100%;
+      width: 100%;
+      font-family: Arial, sans-serif;
+      background: url('https://img.freepik.com/fotos-premium/habitacion-gran-pantalla-que-dice-espacio_1239820-1636.jpg?uid=R135752407&ga=GA1.1.1981654414.1743412727&w=740') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      overflow: hidden;
+    }
+
+    /* Header with buttons at the top left */
+    .header {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      z-index: 10;
+    }
+
+    .button {
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+      padding: 15px 30px;
+      font-size: 18px;
+      text-align: center;
+      cursor: pointer;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(255, 255, 255, 0.6);
+      transition: all 0.3s ease;
+      width: 200px;
+      height: 50px;
+    }
+
+    /* Sky blue color for hover effect */
+    .button:hover {
+      background-color: #87CEEB; /* Sky blue */
+      color: white;
+      box-shadow: 0 4px 10px rgba(135, 206, 235, 0.6); /* Sky blue shadow */
+    }
+
+    .button:active {
+      background-color: #87CEEB;
+      color: white;
+      box-shadow: 0 4px 10px rgba(135, 206, 235, 0.6);
+    }
+
+    .carousel {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      padding: 40px;
+      padding-top: 100px; /* Ensure there's space for the header */
+    }
+
+    .title-box {
+      border: 3px solid white;
+      box-shadow: inset 0 0 15px white;
+      padding: 20px 40px;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 12px;
+      font-size: 2em;
+      font-weight: bold;
+      text-align: center;
+    }
+    .slide-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      width: 100%;
+    }
+    .slide {
+      position: absolute;
+      width: 100%;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .slide.active {
+      opacity: 1;
+    }
+    .content-box {
+      max-width: 70%;
+      border: 3px solid white;
+      box-shadow: inset 0 0 15px white;
+      padding: 30px;
+      background-color: rgba(0, 0, 0, 0.4);
+      border-radius: 10px;
+      font-size: 1.2em;
+      text-align: center;
+    }
+    .nav-circles {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+    .circle {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid white;
+      background-color: transparent;
+      cursor: pointer;
+    }
+    .circle.active {
+      background-color: black;
+    }
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2em;
+      cursor: pointer;
+      color: white;
+      user-select: none;
+      padding: 10px 20px;
+      border: 2px solid white;
+      border-radius: 10px;
+      box-shadow: inset 0 0 10px white;
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+    .arrow.left {
+      left: 20px;
+    }
+    .arrow.right {
+      right: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header with Inicio and Contacto buttons -->
+  <div class="header">
+    <a href="index.php">
+      <button class="button">Inicio</button>
+    </a>
+    <a href="index.html">
+      <button class="button">Contacto</button>
+    </a>
+  </div>
+
+  <div class="carousel">
+    <div class="title-box">Razones reales para confiar en Sysfero</div>
+
+    <div class="slide-container">
+      <div class="slide active">
+        <div class="content-box">​​Sysfero es una empresa de consultoría tecnológica que ofrece un enfoque personalizado y profesional a las pequeñas y medianas empresas que necesitan apoyo real en su infraestructura informática. Nuestra prioridad es que cada cliente se sienta acompañado, comprendido y atendido desde el primer contacto. Según un informe de PwC, el 73% de las personas asegura que la experiencia del cliente es un factor clave a la hora de tomar decisiones, incluso por encima del precio. En Sysfero trabajamos con cercanía, explicando cada paso y dando soluciones adaptadas, porque sabemos que lo que funciona para una empresa no sirve necesariamente para otra.</div>
+      </div>
+      <div class="slide">
+        <div class="content-box">Contamos con una disponibilidad real de 24 horas los 7 días de la semana, gracias a un sistema de trabajo por turnos, lo que garantiza que nuestros clientes nunca se queden solos ante un problema técnico. Esta atención inmediata es vital en un mundo donde el 90% de los consumidores esperan una respuesta inmediata a sus dudas de soporte técnico, según HubSpot. Muchas empresas tecnológicas automatizan su soporte al cliente, pero en Sysfero creemos que el trato humano sigue siendo clave. Por eso, cada caso se atiende por técnicos especializados y no por robots o asistentes automáticos.</div>
+      </div>
+      <div class="slide">
+        <div class="content-box">Nuestra plataforma propia, SysFero, es una herramienta de control remoto desarrollada con PHP y Ansible, que permite gestionar y automatizar tareas en sistemas Linux, Windows y routers Cisco. Pero lo más importante es que SysFero se adapta completamente a las necesidades de cada cliente, creando un entorno de trabajo personalizado, limpio y cómodo, donde el usuario puede realizar las acciones más importantes de forma sencilla. Según McKinsey, las empresas que personalizan sus soluciones aumentan sus ingresos hasta un 40% más rápido que las que no lo hacen. Por eso, en lugar de ofrecer una única versión cerrada de la plataforma, SysFero se configura según el contexto del cliente: idioma, funcionalidades visibles, tipo de equipos, permisos por usuario, tareas automatizadas frecuentes, todo puede ajustarse.​</div>
+      </div>
+      <div class="slide">
+        <div class="content-box">Además de software, gestionamos la instalación, mantenimiento y actualización del hardware necesario. Esto permite a los clientes evitar errores de compatibilidad, cuellos de botella de rendimiento o malgasto de recursos. Nuestra experiencia en virtualización, administración de sistemas y configuración de redes permite que incluso negocios con poca base técnica puedan disfrutar de entornos seguros, eficientes y estables. Esto es especialmente importante si consideramos que el 60% de las pequeñas empresas que sufren pérdida de datos importantes cierran en los seis meses siguientes, según datos de Clutch.​</div>
+      </div>
+      <div class="slide">
+        <div class="content-box">También ofrecemos una capa de seguridad reforzada, tanto a nivel de red como en servidores, y diseñamos estrategias de respaldo personalizadas para asegurar la continuidad del negocio ante cualquier imprevisto. Sabemos que el 43% de los ciberataques afectan a pequeñas empresas y que muchas de ellas no cuentan con personal experto. En Sysfero, no solo protegemos los datos, sino que explicamos al cliente qué medidas se han tomado y por qué, fomentando la confianza y el aprendizaje.</div>
+      </div>
+      <div class="slide">
+        <div class="content-box">Nos apoyamos en herramientas modernas, prácticas y con interfaces limpias, porque entendemos que la tecnología debe facilitar el trabajo, no complicarlo. Nuestro equipo está formado por perfiles jóvenes con alta formación técnica, capacitados para adaptarse rápidamente a los cambios del sector. También somos conscientes de que los usuarios valoran la transparencia: por eso mostramos en todo momento el estado del servicio, el historial de intervenciones y los próximos pasos a seguir.</div>
+      </div>
+      <div class="slide">
+        <div class="content-box">​Muchos de nuestros clientes no solo buscan resolver problemas, sino ganar tranquilidad. Con Sysfero, no solo obtienen soluciones técnicas, sino también acompañamiento, flexibilidad y profesionalismo. Cada cliente tiene a su disposición un entorno de trabajo adaptado a sus flujos reales, una atención directa, y una herramienta como SysFero que no requiere conocimientos avanzados para obtener el control total de su infraestructura.</div>
+      </div>
+
+      <div class="arrow left" onclick="changeSlide(-1)">&#8592;</div>
+      <div class="arrow right" onclick="changeSlide(1)">&#8594;</div>
+    </div>
+
+    <div class="nav-circles">
+      <div class="circle active" onclick="goToSlide(0)"></div>
+      <div class="circle" onclick="goToSlide(1)"></div>
+      <div class="circle" onclick="goToSlide(2)"></div>
+      <div class="circle" onclick="goToSlide(3)"></div>
+      <div class="circle" onclick="goToSlide(4)"></div>
+      <div class="circle" onclick="goToSlide(5)"></div>
+      <div class="circle" onclick="goToSlide(6)"></div>
+    </div>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const circles = document.querySelectorAll('.circle');
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+        circles[i].classList.toggle('active', i === index);
+      });
+      currentSlide = index;
+    }
+
+    function changeSlide(direction) {
+      let newIndex = (currentSlide + direction + slides.length) % slides.length;
+      showSlide(newIndex);
+    }
+
+    function goToSlide(index) {
+      showSlide(index);
+    }
+  </script>
+</body>
+</html>

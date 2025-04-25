@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Layout Page</title>
+  <style>
+    body {
+  margin: 0;
+  padding: 0;
+  background-image: url('images/tutorial.jpg'); /* Replace with your image */
+  background-size: cover; /* Ensures the image covers the entire screen */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  background-attachment: fixed; /* Makes the background fixed while scrolling */
+  height: 100vh; /* Ensures the body takes the full height of the screen */
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+
+
+    .container {
+      padding: 50px;
+      text-align: center;
+    }
+
+    .main-title {
+      font-size: 3em;
+      font-weight: bold;
+      margin-bottom: 50px;
+    }
+
+    .card-section {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      margin-bottom: 80px;
+    }
+
+    .card {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 20px;
+      width: 300px; /* Default width */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 2px solid white;
+    }
+
+    .card.larger {
+      width: 400px; /* Larger width for the first two cards */
+    }
+
+    .circle {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 15px;
+    }
+
+    .circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-text {
+      font-size: 1.2em; /* Increased font size */
+      white-space: pre-line; /* Preserve line breaks */
+      text-align: left;
+    }
+
+    .card-text .title {
+      font-weight: bold;
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+
+    .sub-title {
+      font-size: 2.5em;
+      margin-bottom: 40px;
+    }
+
+    .grid-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .nav-button {
+      position: fixed;
+      top: 20px;
+      padding: 10px 20px;
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 1.2em;
+      box-shadow: 0 0 10px white;
+      transition: all 0.3s ease;
+    }
+
+    .nav-button:hover {
+      background-color: #87CEFA; /* Sky Blue */
+      color: black;
+      box-shadow: 0 0 15px #ffffff; /* White shadow on hover */
+    }
+
+    .left-button {
+      left: 20px;
+    }
+
+    .right-button {
+      right: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .card-section, .grid-section {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="index.php" class="nav-button left-button">Inicio</a>
+  <a href="index.html" class="nav-button right-button">Contacto</a>
+
+  <div class="container">
+    <div class="main-title">Guía de uso de la aplicación</div>
+
+    <div class="card-section">
+      <div class="card larger">
+        <div class="circle"><img src="https://i.pinimg.com/474x/74/29/e2/7429e2f1931d41e4abb8600cd684c5a2.jpg" alt="Image 1"></div>
+        <div class="card-text">
+          <div class="title">Acceder a la aplicación</div>
+          Página de inicio: al abrir la aplicación, accedes directamente a la página principal.<br>
+
+          Inicio de sesión: si ya tienes una cuenta, simplemente haz clic en “Iniciar sesión” e ingresa tus credenciales.<br>
+
+          Registro: si todavía no tienes una cuenta, selecciona la opción “Registrarse”, completa el formulario y, una vez registrado, podrás volver a la pantalla de inicio para iniciar sesión con tu nuevo usuario.<br>
+
+          Ayuda: en la parte superior de la pantalla encontrarás enlaces con información útil y accesos a soporte por si necesitas asistencia.
+        </div>
+      </div>
+      <div class="card larger">
+        <div class="circle"><img src="https://i.pinimg.com/474x/55/c6/73/55c6733e04df8a528fd4d6ee16e9bb51.jpg" alt="Image 2"></div>
+        <div class="card-text">
+          <div class="title">Funcionalidades disponibles</div>
+          Desde el panel principal, tendrás acceso a una serie de botones que ejecutan automáticamente funciones a través de playbooks de Ansible, personalizados según el sistema operativo del equipo (Linux, Windows o routers Cisco). Las funciones básicas incluyen:<br>
+          <ol>
+            <li>Copia de seguridad en la nube: permite crear respaldos de tus sistemas en servidores seguros en la nube.</li><br>
+            <li>Registro de nuevos usuarios de forma remota: ideal para incorporar personal sin necesidad de estar físicamente presentes.</li><br>
+            <li>Eliminación de caché y archivos temporales en los equipos conectados, optimizando su rendimiento.</li><br>
+            <li>Control remoto completo de las máquinas integradas.</li><br>
+            <li>Supervisión de servicios para asegurar que todo funciona correctamente.</li><br>
+            <li>Ejecutar actualizaciones del sistema según sea necesario.</li><br>
+          </ol>
+          Si necesitas que se integre otra funcionalidad especial en tu panel, puedes comunicarte con nosotros directamente. Estamos siempre disponibles para adaptarnos a las necesidades de cada cliente.
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-title">Servicios profesionales para empresas</div>
+
+    <div class="grid-section">
+      <div class="card">
+        <div class="circle"><img src="https://i.pinimg.com/474x/2e/c2/c7/2ec2c719887c58f8315137ba45ed76b0.jpg" alt="Image 3"></div>
+        <div class="card-text">
+          <div class="title">Ciberseguridad</div>
+          Hemos detectado que muchas PYMES en España no se consideran blanco de ataques digitales, lo cual es un error común. Los ciberataques a pequeñas empresas, como ocurrió en 2020 con una tienda de muebles en Valencia, son más frecuentes de lo que parece. Nosotros ofrecemos:
+
+          Protección contra amenazas informáticas.<br>
+
+          Análisis de vulnerabilidades.<br>
+
+          Monitorización de sistemas para evitar fugas de datos.
+        </div>
+      </div>
+      <div class="card">
+        <div class="circle"><img src="https://i.pinimg.com/474x/55/c6/73/55c6733e04df8a528fd4d6ee16e9bb51.jpg" alt="Image 4"></div>
+        <div class="card-text">
+          <div class="title">Soporte y mantenimiento de redes</div>
+          Muchos emprendedores no tienen conocimientos en redes, lo que puede desmotivarlos a continuar con sus proyectos. Por eso:
+
+          Ofrecemos soporte técnico continuo.<br>
+
+          Instalamos y gestionamos redes seguras.<br>
+
+          Solucionamos incidencias sin interrumpir la actividad de tu negocio.
+        </div>
+      </div>
+      <div class="card">
+        <div class="circle"><img src="https://i.pinimg.com/474x/24/e1/19/24e1191ecebb469139a507981f201a12.jpg" alt="Image 5"></div>
+        <div class="card-text">
+          <div class="title">Administración de sistemas</div>
+          Una gestión deficiente de servidores puede provocar pérdidas de datos y afectar la relación con los clientes. Nuestro equipo ofrece:
+
+          Administración de servidores y sistemas.<br>
+
+          Monitorización y mantenimiento preventivo.<br>
+
+          Infraestructura IT optimizada y segura.
+        </div>
+      </div>
+      <div class="card">
+        <div class="circle"><img src="https://img.freepik.com/psd-gratis/almacenamiento-datos-digitales-servidores-computacion-nube-e-infraestructura-red_191095-86102.jpg?uid=R135752407&ga=GA1.1.1981654414.1743412727&w=740" alt="Image 6"></div>
+        <div class="card-text">
+          <div class="title">Gestión de bases de datos</div>
+          La pérdida de datos puede generar consecuencias graves. Para prevenirlo, ofrecemos:
+
+          Implementación de planes de respaldo.<br>
+
+          Automatización de copias de seguridad.<br>
+
+          Recuperación rápida ante fallos o ataques.
+        </div>
+      </div>
+      <div class="card">
+        <div class="circle"><img src="https://i.pinimg.com/474x/24/f2/f5/24f2f52f2d03cf105b3583b5cc23323a.jpg" alt="Image 7"></div>
+        <div class="card-text">
+          <div class="title">Virtualización</div>
+          Trabajar desde casa de forma segura ya no es un lujo, es una necesidad. Por eso:
+
+          Creamos entornos virtuales para acceder a sistemas desde cualquier lugar.<br>
+
+          Garantizamos conexiones seguras y protegidas.<br>
+
+          Mejoramos la flexibilidad sin comprometer la seguridad.
+        </div>
+      </div>
+ 	<div class="card">
+        <div class="circle"><img src="https://img.freepik.com/foto-gratis/primer-plano-software-codificacion-tableta-sala-servidor_482257-118186.jpg?uid=R135752407&ga=GA1.1.1981654414.1743412727&w=740" alt="Image 8"></div>
+        <div class="card-text">
+          <div class="title">Venta y gestión de software y hardware</div>
+          Sabemos que confiar en una sola empresa para todo es más cómodo y eficaz. Nosotros te ofrecemos:
+
+          Equipos informáticos seguros y optimizados.<br>
+
+          Licencias de software gestionadas directamente por nuestro equipo.<br>
+
+          Material tecnológico propio que garantiza calidad y reduce costos.
+        </div>
+      </div>
+      <div class="card">
+        <div class="circle"><img src="https://i.pinimg.com/474x/99/58/f6/9958f65f80947632092007e518de26b3.jpg" alt="Image 9"></div>
+        <div class="card-text">
+          <div class="title">Contacto</div>
+          ¿Tienes alguna consulta? No dudes en ponerte en contacto con nosotros a través del formulario en nuestra página web.<br>
+
+          Te responderemos lo antes posible y podremos hablar de soluciones personalizadas según tus necesidades.
+        </div>
+      </div>   
+
+</div>
+  </div>
+</body>
+</html>

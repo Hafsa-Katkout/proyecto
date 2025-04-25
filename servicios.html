@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SysFero</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-image: url('https://img.freepik.com/fotos-premium/detalle-maquina-futurista-ilustracion-3d-pared-futurista-hecha-varios-detalles-fondo-cyberpunk-papel-tapiz-industrial-detalles-grunge_116124-14790.jpg?uid=R135752407&ga=GA1.1.1981654414.1743412727&w=740'); /* Change this to your background image path */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center; /* Center the content horizontally */
+            align-items: center;    /* Center the content vertically */
+            overflow: hidden; /* Ensure no scrollbars are shown */
+            height: 100vh;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        /* Hide the scrollbar but keep scrolling */
+        ::-webkit-scrollbar {
+            width: 0px;
+            height: 0px;
+        }
+
+        h1 {
+            font-size: 2em;
+            color: white;
+            text-align: center;
+            border: 2px solid white;
+            padding: 10px;
+            box-shadow: 0 0 10px white;
+            margin-bottom: 20px;
+            width: 80%; /* Make the title span the width of the container */
+            max-width: 1000px; /* Limit the max width for better responsiveness */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .circle-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            overflow-y: auto; /* Allow scrolling within the container */
+            max-height: 100vh;
+            width: 100%;
+        }
+
+        .circle-item {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            flex-wrap: wrap; /* Allow circles to wrap with text */
+        }
+
+        .circle {
+            width: 120px;  /* Increase size */
+            height: 120px; /* Increase size */
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 10px white;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .text {
+            margin-left: 20px;
+            font-size: 1.2em;
+            color: white;
+            border: 2px solid white;
+            padding: 10px;
+            box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.5); /* White translucent shadow inside the box */
+            background: rgba(255, 255, 255, 0.2); /* Slight white color but not solid */
+            display: flex;
+            align-items: center;
+            height: auto; /* Allow text height to adjust */
+            max-width: 600px; /* Set a max width to prevent text from overflowing */
+            width: auto; /* Allow the width to adjust based on content */
+        }
+
+        /* Style for the buttons */
+        .nav-buttons {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .nav-buttons a {
+            display: block;
+            width: 150px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 16px;
+            color: black;
+            background-color: white;
+            border: 2px solid white;
+            border-radius: 5px;
+            text-decoration: none;
+            box-shadow: 0 0 10px white;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .nav-buttons a:hover {
+            background-color: #87CEFA; /* Light Sky Blue */
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-buttons">
+        <a href="index.php">Inicio</a>
+        <a href="index.html">Contacto</a>
+    </div>
+    
+    <h1>Servicios de SysFero</h1>
+    <div class="circle-container">
+        <!-- Circle 1 -->
+        <div class="circle-item">
+            <div class="circle">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQR3Et8YMiT1UmcdIJx86GO0KcGws4gvRl8chL1EnarQ&s&ec=72940543" alt="Image 1"> <!-- Change this to your image path -->
+            </div>
+            <div class="text">Ciberseguridad (Cybersecurity)
+En SysFero, entendemos que la seguridad digital es una prioridad para cualquier empresa, especialmente para las pequeñas y medianas. Muchos negocios, debido a la falta de tiempo o conocimientos técnicos, no cuentan con las protecciones necesarias contra amenazas cibernéticas. Nuestra solución integral de ciberseguridad garantiza que sus sistemas estén blindados contra los riesgos digitales, protegiendo los datos sensibles y manteniendo la integridad de su reputación empresarial. Con nuestro servicio, las empresas pueden operar con tranquilidad, sabiendo que están protegidas contra ataques cibernéticos.</div>
+        </div>
+        <!-- Circle 2 -->
+        <div class="circle-item">
+            <div class="circle">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrhQR0j6gYcQeBiE3VGltU7QTzQUKBnjvg7M6vZKq6-A&s&ec=72940543" alt="Image 2"> <!-- Change this to your image path -->
+            </div>
+            <div class="text">Soporte y Mantenimiento de Redes (Network Support and Maintenance)
+El soporte constante es esencial para garantizar que las redes de su empresa funcionen sin interrupciones. En SysFero, ofrecemos un servicio de soporte y mantenimiento de redes para pequeñas y medianas empresas que no cuentan con el personal especializado para gestionar sus infraestructuras de red. Nos encargamos de todo, desde la configuración inicial hasta la resolución de problemas, permitiéndole enfocarse en lo que realmente importa: el crecimiento de su negocio. Con nuestro servicio, sus redes estarán siempre operativas, evitando que problemas técnicos afecten su productividad.</div>
+        </div>
+        <!-- Circle 3 -->
+        <div class="circle-item">
+            <div class="circle">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOVz1NYePwJBHHXS8tOksaAEBBUJvktk79cXWC0rmjRQ&s&ec=72940543" alt="Image 3"> <!-- Change this to your image path -->
+            </div>
+            <div class="text">Administración de Sistemas (Systems Administration)
+La gestión eficaz de los sistemas de IT es clave para evitar fallos que puedan paralizar la operación de su empresa. En SysFero, nos especializamos en la administración de sistemas, garantizando que su infraestructura tecnológica esté siempre bien gestionada, monitoreada y optimizada. Desde servidores hasta almacenamiento en la nube, ofrecemos un servicio integral que asegura la continuidad operativa de su empresa y la protección de sus datos críticos. Con nuestra ayuda, su empresa operará de manera eficiente y sin preocupaciones.</div>
+        </div>
+        <!-- Circle 4 -->
+        <div class="circle-item">
+            <div class="circle">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4tu4ppJtF4MTaRrfkb4Eik_X3qWb0Ze9I9OfkDd-gmA&s&ec=72940543" alt="Image 4"> <!-- Change this to your image path -->
+            </div>
+            <div class="text">Gestión de Bases de Datos (Database Management)
+La protección de los datos empresariales es crucial para el éxito de cualquier organización. Muchas empresas no cuentan con un sistema de respaldo adecuado y, en caso de un fallo o ciberataque, pueden perder información invaluable. En SysFero, ofrecemos gestión de bases de datos con sistemas de respaldo avanzados, asegurando que sus datos estén siempre disponibles y protegidos, incluso en situaciones de emergencia. Este servicio le proporcionará la tranquilidad de saber que su información está segura y fácilmente recuperable cuando lo necesite.</div>
+        </div>
+        <!-- Circle 5 -->
+        <div class="circle-item">
+            <div class="circle">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8X4KP3Fl4GrSQCMdek1ZL313JcCmKF2p_RnUJJzd2GQ&s&ec=72940543" alt="Image 5"> <!-- Change this to your image path -->
+            </div>
+            <div class="text">Virtualización (Virtualization)
+En el mundo actual, donde el trabajo remoto y flexible se está convirtiendo en la norma, la virtualización se ha vuelto una necesidad. SysFero ofrece soluciones de virtualización que permiten a las empresas acceder a sus sistemas desde cualquier lugar, asegurando que la productividad no se vea afectada. Nuestra infraestructura de virtualización proporciona un entorno seguro para que sus empleados trabajen desde cualquier ubicación, con una gestión adecuada de los datos y la seguridad. Esto no solo mejora la flexibilidad, sino que también garantiza la seguridad de la información empresarial.</div>
+        </div>
+        <!-- Circle 6 -->
+        <div class="circle-item">
+            <div class="circle">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSec_55ueVjwW_9O0AzHxKD2Gb0G73yL-K9X-qIFwlVcg&s&ec=72940543" alt="Image 6"> <!-- Change this to your image path -->
+            </div>
+            <div class="text">Consultoría Tecnológica (Technology Consulting)
+La tecnología avanza rápidamente, y muchas pequeñas empresas no tienen el conocimiento necesario para tomar decisiones informadas sobre su infraestructura tecnológica. SysFero ofrece servicios de consultoría tecnológica que ayudan a las empresas a tomar las mejores decisiones para su infraestructura de IT. Ya sea que necesite asesoramiento sobre la elección de software, hardware o soluciones en la nube, nuestro equipo de expertos estará encantado de ayudarle a identificar las mejores opciones para sus necesidades empresariales.</div>
+        </div>
+    </div>
+</body>
+</html>

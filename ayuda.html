@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estás en el lugar correcto</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0d2b45, #3e5c76);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+            animation: backgroundChange 5s infinite alternate;
+        }
+
+        @keyframes backgroundChange {
+            0% {
+                background: linear-gradient(135deg, #0d2b45, #3e5c76);
+            }
+            100% {
+                background: linear-gradient(135deg, #3e5c76, #0d2b45);
+            }
+        }
+
+        .container {
+            max-width: 900px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            transform: scale(0.98);
+            animation: scaleUp 0.5s ease-out;
+        }
+
+        @keyframes scaleUp {
+            0% {
+                transform: scale(0.98);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        h1 {
+            font-size: 50px;
+            color: #00f5e1;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        p {
+            font-size: 18px;
+            color: #c4c4c4;
+            line-height: 1.8;
+            margin-top: 20px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .button-container {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            animation: slideUp 2s ease-in-out;
+        }
+
+        @keyframes slideUp {
+            0% {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .contact-button {
+            padding: 18px 40px;
+            font-size: 20px;
+            background-color: #00f5e1;
+            color: #000;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 2px;
+            box-shadow: 0 10px 30px rgba(0, 245, 225, 0.2);
+            transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+        }
+
+        .contact-button:hover {
+            background-color: #009b8f;
+            transform: translateY(-3px);
+        }
+
+        .contact-button:active {
+            transform: translateY(3px);
+        }
+
+        .footer {
+            margin-top: 50px;
+            font-size: 14px;
+            color: #bbb;
+            letter-spacing: 0.5px;
+            animation: fadeIn 2s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>¡Estás en el lugar correcto!</h1>
+        <p>
+            Sabemos que a veces las cosas pueden parecer confusas o complicadas, pero no te preocupes. ¡Aquí estamos para ayudarte! No dudes en contarnos lo que te preocupa o cualquier cosa en la que necesites asistencia. <br> ¡Lo que sea que necesites, estamos solo a un clic de distancia!
+        </p>
+        <div class="button-container">
+            <a href="index.html" class="contact-button">Contáctanos</a>
+        </div>
+        <div class="footer">
+            <p>Recuerda, siempre estamos disponibles para ayudarte. ¡No dudes en hacernos saber lo que necesitas!</p>
+        </div>
+    </div>
+
+</body>
+</html>
