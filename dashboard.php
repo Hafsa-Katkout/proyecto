@@ -12,7 +12,7 @@
         }
         body {
             font-family: 'Arial', sans-serif;
-            background-image: url('images/dash.jpg'); /* High-quality background image */
+            background-image: url('images/dash.jpg');
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -95,8 +95,11 @@
             <button type="submit" class="backup-button">Backup Windows</button>
         </form>
 
+        <!-- BOTÓN NUEVO (LLEVA A UN HTML) -->
+        <a href="updateMachine.php" class="backup-button">Actualizar tu Máquina</a>
+
         <div class="info-text">
-            <p>Elige el sistema para realizar una copia de seguridad remota en la nube.</p>
+            <p>Elige el sistema para realizar una copia de seguridad remota en la nube o actualizar tu máquina.</p>
         </div>
     </div>
 
