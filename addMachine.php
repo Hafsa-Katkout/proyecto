@@ -11,17 +11,19 @@ if ($conexion->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ip = $conexion->real_escape_string($_POST['ip']);
     $usuario = $conexion->real_escape_string($_POST['usuario']);
-    $clave_privada = $conexion->real_escape_string($_POST['clave_privada']);
-
+    $clave = $_POST['clave_privada'];
+    $clave_codificada = base64_encode($clave);
+    $clave_codificada_escapada = $conexion->real_escape_string($clave_codificada);
+    
     // Verificamos si la combinación exacta ya existe
-    $consulta = "SELECT * FROM datos WHERE ip = '$ip' AND usuario = '$usuario' AND clave_privada = '$clave_privada'";
+    $consulta = "SELECT * FROM datos WHERE ip = '$ip' AND usuario = '$usuario' AND clave_privada = '$clave_codificada_escapada'";
     $resultado = $conexion->query($consulta);
 
     if ($resultado->num_rows > 0) {
         echo "<p>La máquina ya está registrada.</p>";
     } else {
         // Insertamos primero los datos SIN ruta_clave
-        $insertar = "INSERT INTO datos (ip, usuario, clave_privada, ruta_clave) VALUES ('$ip', '$usuario', '$clave_privada', '')";
+        $insertar = "INSERT INTO datos (ip, usuario, clave_privada, ruta_clave) VALUES ('$ip', '$usuario', '$clave_codificada_escapada', '')";
 
         if ($conexion->query($insertar) === TRUE) {
             $id_insertado = $conexion->insert_id;

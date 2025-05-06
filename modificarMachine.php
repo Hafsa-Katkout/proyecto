@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'];
     $ip = $_POST['ip'];
     $usuario = $_POST['usuario'];
-    $clave_privada = $_POST['clave_privada'];
+    $clave_privada = base64_encode($_POST['clave_privada']);
     $ruta_clave = $_POST['ruta_clave'];
 
     // Validate if all fields are filled
@@ -48,7 +48,15 @@ if (isset($_GET['id'])) {
     $stmt->execute();
     $result = $stmt->get_result();
     $machine = $result->fetch_assoc();
+
+    // Decodificar la clave privada
+    if (isset($machine['clave_privada'])) {
+        $clave_codificada = $machine['clave_privada'];
+        $clave = base64_decode($clave_codificada);
+        $machine['clave_privada'] = $clave;
+    }
 }
+
 ?>
 
 <!DOCTYPE html>

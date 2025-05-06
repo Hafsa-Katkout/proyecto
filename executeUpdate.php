@@ -36,26 +36,16 @@ if (isset($_POST['ip'], $_POST['usuario'], $_POST['ruta_clave'])) {
 
     // Crear el archivo con el contenido de la clave privada
 
-    // Step 1: Preserve the first and last lines
-$first_line = '-----BEGIN RSA PRIVATE KEY-----';
-$last_line = '-----END RSA PRIVATE KEY-----';
+// Decodificar la clave desde base64 (como está en la base de datos)
+$clave_privada_decodificada = base64_decode($clave_privada);
 
-// Step 2: Remove the first and last lines from the private key
-$clave_privada_middle = substr($clave_privada, strlen($first_line), -strlen($last_line));
+// Escapar el contenido para usarlo en shell con seguridad
+$clave_privada_final_escaped = escapeshellarg($clave_privada_decodificada);
 
-// Step 3: Replace spaces with line breaks in the middle part of the key
-// This will ensure we replace spaces with \n but not introduce any empty lines
-$clave_privada_middle_with_linebreaks = str_replace(' ', "\n", $clave_privada_middle);
-
-// Step 4: Reassemble the key with the first and last lines intact, ensuring no extra empty lines
-$clave_privada_final = $first_line . "\n" . trim($clave_privada_middle_with_linebreaks) . "\n" . $last_line;
-
-// Step 5: Escape the final key to handle special characters correctly for shell execution
-$clave_privada_final_escaped = escapeshellarg($clave_privada_final);
-
-// Step 6: Write the private key with the modified line breaks using sudo and tee
+// Crear el archivo con sudo usando echo + tee
 $command = "echo $clave_privada_final_escaped | sudo tee $ruta_clave > /dev/null";
 shell_exec($command);
+
 
 // Step 7: Change the ownership and permissions using sudo
 $command_chown = "sudo chown ubuntu:ubuntu $ruta_clave && sudo chmod 400 $ruta_clave";
