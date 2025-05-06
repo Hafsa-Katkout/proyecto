@@ -1,30 +1,10 @@
 ---
-- name: Execute playbook for the selected machine
-  hosts: localhost
-  gather_facts: false
-  vars:
-    ansible_user: usuario  # Ensure the playbook runs as 'usuario'
-
+- name: Playbook para actualizar repositorios
+  hosts: all
+  become: yes
   tasks:
-    - name: Ensure the .ssh directory exists and has correct permissions
-      ansible.builtin.file:
-        path: "/home/usuario/.ssh"
-        state: directory
-        mode: '0700'  # Permissions for .ssh directory
-        owner: 'usuario'  # Owner should be usuario
-        group: 'usuario'  # Group should be usuario
-      become: false  # Don't use root, run as the 'usuario'
+    - name: Prueba de conexión
+      ping:
 
-    - name: Create the SSH key file with the content in the user's home directory
-      ansible.builtin.copy:
-        content: "{{ clave_privada }}"
-        dest: "/home/usuario/.ssh/clave"
-        owner: 'usuario'  # Ensure the key file is owned by usuario
-        mode: '0600'  # Permissions for the private key file
-      become: false  # Don't use root, run as the 'usuario'
-
-    - name: Test SSH connection to remote machine
-      ansible.builtin.ping:
-      delegate_to: "{{ ip }}"
-      ansible_ssh_private_key_file: "{{ ruta_clave }}"  # Use the private key for SSH
-      become: false  # Don't use root, run as the 'usuario'
+    - name: Ejecutar 'apt update'
+      command: apt update

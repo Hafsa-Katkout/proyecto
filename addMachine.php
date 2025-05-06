@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $id_insertado = $conexion->insert_id;
 
             // Generamos la ruta_clave con "usuario" fijo
-            $ruta_base = "/home/usuario/.ssh/clave";
+            $ruta_base = "/home/ubuntu/.ssh/clave";
             $ruta_final = $ruta_base;
             $contador = 2; // Comenzamos desde 2
 

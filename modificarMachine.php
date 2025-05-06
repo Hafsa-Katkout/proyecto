@@ -185,7 +185,8 @@ if (isset($_GET['id'])) {
             <input type="text" id="usuario" name="usuario" value="<?php echo htmlspecialchars($machine['usuario']); ?>" required>
 
             <label for="clave_privada">Clave Privada:</label>
-            <input type="text" id="clave_privada" name="clave_privada" value="<?php echo htmlspecialchars($machine['clave_privada']); ?>" required>
+<textarea id="clave_privada" name="clave_privada" rows="10" style="width: 100%;" required><?php echo htmlspecialchars($machine['clave_privada']); ?></textarea>
+
 
             <label for="ruta_clave">Ruta Clave:</label>
             <input type="text" id="ruta_clave" name="ruta_clave" value="<?php echo htmlspecialchars($machine['ruta_clave']); ?>" required>

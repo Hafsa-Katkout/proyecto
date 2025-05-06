@@ -1,12 +1,20 @@
 <?php
+// Mostrar errores (para depuración)
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 // Conexión a la base de datos
 include("db.php");
+
+function mostrarError($mensaje) {
+    echo "<div style='color:red; font-weight:bold;'>$mensaje</div>";
+}
 
 // Verificamos si los datos fueron enviados por POST
 if (isset($_POST['ip'], $_POST['usuario'], $_POST['ruta_clave'])) {
     $ip = $_POST['ip'];
     $usuario = $_POST['usuario'];
-    $ruta_clave = $_POST['ruta_clave'];  // Asumimos que esta variable ya contiene la ruta completa del archivo
+    $ruta_clave = $_POST['ruta_clave'];  // Ruta completa para guardar el archivo
 
     // Obtenemos la clave privada de la base de datos
     $stmt = $conn->prepare("SELECT clave_privada FROM datos WHERE ip = ?");
@@ -17,51 +25,60 @@ if (isset($_POST['ip'], $_POST['usuario'], $_POST['ruta_clave'])) {
     $stmt->close();
 
     if (!$clave_privada) {
-        die("Error: No se encontró la clave privada para esta máquina.");
+        mostrarError("Error: No se encontró la clave privada para esta máquina.");
+        exit;
     }
 
-    // Mostrar valores para depuración
     echo "IP: $ip<br>";
     echo "Usuario: $usuario<br>";
     echo "Ruta clave: $ruta_clave<br>";
-    echo "Clave privada (parte): " . substr($clave_privada, 0, 30) . "...<br><br>";
+    echo "Clave privada (parte): " . htmlspecialchars(substr($clave_privada, 0, 30)) . "...<br><br>";
 
-    // Crear el archivo con el contenido de la clave privada en la ruta especificada
-    if (file_put_contents($ruta_clave, $clave_privada) !== false) {
-        echo "Archivo creado exitosamente en: $ruta_clave<br>";
+    // Crear el archivo con el contenido de la clave privada
 
-        // Cambiar la propiedad del archivo a usuario:usuario
-        $chownCommand = "chown www-data:$usuario $ruta_clave";
-        shell_exec($chownCommand);
+    // Step 1: Preserve the first and last lines
+$first_line = '-----BEGIN RSA PRIVATE KEY-----';
+$last_line = '-----END RSA PRIVATE KEY-----';
 
-        // Cambiar los permisos del archivo a 400 (solo lectura para el propietario)
-        $chmodCommand = "chmod 400 $ruta_clave";
-        shell_exec($chmodCommand);
+// Step 2: Remove the first and last lines from the private key
+$clave_privada_middle = substr($clave_privada, strlen($first_line), -strlen($last_line));
 
-        echo "Propiedad y permisos del archivo actualizados.<br>";
-    } else {
-        echo "Error al crear el archivo.<br>";
-    }
+// Step 3: Replace spaces with line breaks in the middle part of the key
+// This will ensure we replace spaces with \n but not introduce any empty lines
+$clave_privada_middle_with_linebreaks = str_replace(' ', "\n", $clave_privada_middle);
 
-    // Ejecutamos el playbook de Ansible pasando las variables
-    $command = "ansible-playbook /var/www/html/proyecto/playbooks/update_linux.yml --extra-vars " .
-               "'ip=$ip usuario=$usuario ruta_clave=$ruta_clave clave_privada=\"$clave_privada\"'";
+// Step 4: Reassemble the key with the first and last lines intact, ensuring no extra empty lines
+$clave_privada_final = $first_line . "\n" . trim($clave_privada_middle_with_linebreaks) . "\n" . $last_line;
 
-    // Mostrar comando para depuración
-    echo "Comando Ansible: $command<br>";
+// Step 5: Escape the final key to handle special characters correctly for shell execution
+$clave_privada_final_escaped = escapeshellarg($clave_privada_final);
 
-    // Ejecutamos el comando
+// Step 6: Write the private key with the modified line breaks using sudo and tee
+$command = "echo $clave_privada_final_escaped | sudo tee $ruta_clave > /dev/null";
+shell_exec($command);
+
+// Step 7: Change the ownership and permissions using sudo
+$command_chown = "sudo chown ubuntu:ubuntu $ruta_clave && sudo chmod 400 $ruta_clave";
+shell_exec($command_chown);
+
+
+
+   
+
+    echo "Private key has been written, ownership and permissions updated!";
+    $playbook = '/var/www/html/proyecto/playbooks/update_linux.yml'; // nombre de tu playbook
+    $playbook = escapeshellarg($playbook);
+
+    // Desactivamos la verificación de claves SSH y ejecutamos el playbook con IP directa
+    $command = "sudo ansible-playbook -i $ip, -u $usuario --private-key $ruta_clave $playbook 2>&1";
+
+    echo "<h3>Ejecutando:</h3><pre>$command</pre>";
+
+    // Ejecutamos el comando y capturamos salida
     $output = shell_exec($command);
 
-    // Comprobamos si hubo salida
-    if ($output === null) {
-        echo "Error al ejecutar el playbook.<br>";
-    } else {
-        // Mostramos el resultado de la ejecución
-        echo "<pre>$output</pre>";
-    }
-
+    echo "<h3>Resultado:</h3><pre>$output</pre>";
 } else {
-    die("Error: No machine selected.");
+    mostrarError("Error: Faltan datos para ejecutar la actualización.");
 }
 ?>
