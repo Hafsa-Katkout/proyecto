@@ -9,18 +9,34 @@ if ($conexion->connect_error) {
 
 // Consultamos todas las máquinas
 $consulta = "SELECT * FROM datos";
-$resultado = $conexion->query($consulta);
+$resultado_maquinas = $conexion->query($consulta); // para las máquinas
+$resultado_usuarios = $conexion->query("SELECT * FROM usuarios_ansible");
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nombre'], $_POST['contraseña'])) {
+    $nombre = $_POST['nombre'];
+    $contraseña = password_hash($_POST['contraseña'], PASSWORD_DEFAULT); // Encriptación segura
+
+    $stmt = $conexion->prepare("INSERT INTO usuarios_ansible (nombre, contraseña) VALUES (?, ?)");
+$stmt->bind_param("ss", $nombre, $contraseña);
+    $stmt->execute();
+    $stmt->close();
+
+    header("Location: " . $_SERVER['PHP_SELF']); // Recarga automática
+    exit();
+}
+
+// Obtener los usuarios existentes
+
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Gestión de máquinas y usuarios</title>
+    <title>SysFero</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: url('images/update.jpg') no-repeat center center fixed;
+            background: url('images/back_usuarios_ansible.jpg') no-repeat center center fixed;
             background-size: cover;
             margin: 0;
             padding: 0;
@@ -199,7 +215,7 @@ $resultado = $conexion->query($consulta);
 </head>
 <body>
 
-    <h2>Listado de todas las máquinas registradas</h2>
+    <h2>Elige la máquina dónde quieres añadir el usuario</h2>
 
     <table>
         <tr>
@@ -210,8 +226,8 @@ $resultado = $conexion->query($consulta);
             <th>Acciones</th>
         </tr>
 
-        <?php if ($resultado->num_rows > 0): ?>
-            <?php while ($fila = $resultado->fetch_assoc()): ?>
+        <?php if ($resultado_maquinas->num_rows > 0): ?>
+            <?php while ($fila = $resultado_maquinas->fetch_assoc()): ?>
                 <tr>
                     <td><?php echo $fila['id']; ?></td>
                     <td><?php echo $fila['ip']; ?></td>
@@ -242,25 +258,48 @@ $resultado = $conexion->query($consulta);
     <a href="addMachine.php" class="boton-agregar">Añadir nueva máquina</a>
 
     <!-- FORMULARIO AÑADIR USUARIO A LA MÁQUINA -->
+    <div class="container">
+    <h2>Usuarios Existentes en Ansible</h2>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Contraseña (Hash)</th>
+            <th>Acciones</th>
+        </tr>
+        <?php while ($fila = $resultado_usuarios->fetch_assoc()): ?>
+            <tr>
+                <td><?= $fila['id'] ?></td>
+                <td><?= htmlspecialchars($fila['nombre']) ?></td>
+                <td><?= htmlspecialchars($fila['contraseña']) ?></td>
+                <td class="actions">
+                    <form action="modificar_user.php" method="GET">
+                        <input type="hidden" name="id" value="<?= $fila['id'] ?>">
+                        <button type="submit">Modificar</button>
+                    </form>
+                    <form action="seleccionar_usuario.php" method="POST">
+                        <input type="hidden" name="id" value="<?= $fila['id'] ?>">
+                        <button type="submit">Seleccionar</button>
+                    </form>
+                </td>
+            </tr>
+        <?php endwhile; ?>
+    </table>
+</div>
     <div class="form-container">
-        <h3>Añadir un usuario a la máquina</h3>
-        <form action="agregar_usuario.php" method="POST">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required>
+            <h3>Añadir Nuevo Usuario</h3>
+            <form action="" method="POST">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
 
-            <label for="contraseña">Contraseña:</label>
-            <input type="password" id="contraseña" name="contraseña" required>
+                <label for="contraseña">Contraseña:</label>
+                <input type="password" id="contraseña" name="contraseña" required>
 
-            <button type="submit">Añadir usuario</button>
-        </form>
-    </div>
+                <button type="submit">Añadir Usuario</button>
+            </form>
+        </div>
 
-    <!-- BOTONES DE NAVEGACIÓN -->
-    <div class="top-buttons">
-        <button onclick="location.href='dashboard.php'">Volver al panel</button>
-        <button onclick="location.href='index.php'">Volver al inicio</button>
-        <button onclick="location.href='login.php'">Página de inicio de sesión</button>
-    </div>
 
 </body>
 </html>
