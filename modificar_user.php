@@ -43,7 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Error updating record: " . $conn->error;
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -54,81 +53,135 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Modificar Usuario</title>
     <style>
         /* Basic reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* Set background image */
-        body {
-            font-family: 'Arial', sans-serif;
-            background-image: url('https://www.example.com/your-background-image.jpg'); /* Replace with your image path */
-            background-size: cover;
-            background-position: center;
-            color: #fff;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+/* Set background image */
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('/images/back_modificar_user_ansible.jpg'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 
-        .container {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 30px;
-            border-radius: 10px;
-            width: 100%;
-            max-width: 500px;
-            text-align: center;
-        }
+/* Container styling */
+.container {
+    background: rgba(0, 0, 0, 0.7); /* Keeps the black background */
+    padding: 80px; /* Increased padding to make the container larger */
+    border-radius: 15px;
+    width: 100%;
+    max-width: 700px; /* Increased max-width for a larger container */
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.9); /* Increased shadow size and opacity for a larger and deeper effect */
+}
 
-        h3 {
-            margin-bottom: 20px;
-            font-size: 24px;
-            color: #ffcc00; /* Yellow color */
-        }
+/* Title styling */
+h3 {
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #87CEEB; /* Sky Blue color */
+}
 
-        form {
-            display: flex;
-            flex-direction: column;
-        }
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Add gap between form elements */
+}
 
-        label {
-            margin-bottom: 8px;
-            font-size: 16px;
-        }
+/* Label styling */
+label {
+    font-size: 18px;
+    color: #fff; /* White color for labels */
+}
 
-        input[type="text"],
-        input[type="password"] {
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
+/* Input field styling */
+input[type="text"],
+input[type="password"] {
+    padding: 15px;
+    margin-bottom: 25px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 18px;
+    background-color: #222; /* Darker background for input */
+    color: #fff; /* White text inside input fields */
+}
 
-        button {
-            background-color: #ffcc00; /* Yellow color */
-            color: #000;
-            padding: 12px;
-            font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+/* Button styling */
+button.save-btn {
+    background-color: #87CEEB; /* Sky Blue color for the button */
+    color: #fff; /* White text */
+    padding: 18px 30px; /* Larger padding for bigger button */
+    font-size: 22px; /* Bigger font size */
+    border: none;
+    border-radius: 12px; /* More rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    margin-bottom: 25px; /* Space between buttons */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7); /* Increased shadow size for the button */
+}
 
-        button:hover {
-            background-color: #e6b800; /* Slightly darker yellow */
-        }
+button.save-btn:hover {
+    background-color: #4682B4; /* Darker Sky Blue color on hover */
+    color: #fff; /* Ensure text stays white */
+    transform: scale(1.1); /* Slight scale effect for the button */
+}
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                width: 90%;
-                padding: 20px;
-            }
-        }
+/* Navigation buttons styling */
+.nav-buttons {
+    display: flex;
+    justify-content: space-between; /* Space out buttons evenly */
+    width: 100%;
+    margin-top: 30px;
+    gap: 20px; /* Adds space between the buttons */
+}
+
+.nav-buttons a {
+    text-decoration: none;
+    color: #000;
+    background-color: #fff; /* White background for nav buttons */
+    padding: 18px 30px; /* Larger padding for bigger buttons */
+    border-radius: 12px; /* More rounded corners */
+    font-size: 20px; /* Slightly bigger font size */
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7); /* Increased shadow size for nav buttons */
+}
+
+.nav-buttons a:hover {
+    background-color: #87CEEB; /* Sky Blue color */
+    color: #fff; /* White text */
+    transform: scale(1.1); /* Slight scale effect for nav buttons */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 30px; /* Reduce padding on small screens */
+    }
+
+    .nav-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px; /* Add vertical gap */
+    }
+
+    .nav-buttons a {
+        margin-bottom: 15px;
+    }
+}
+
+
     </style>
 </head>
 <body>
@@ -144,9 +197,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="password" id="contraseña" name="contraseña" value="<?php echo htmlspecialchars($user['contraseña']); ?>" required>
             </div>
             <div>
-                <button type="submit">Guardar Cambios</button>
+                <button type="submit" class="save-btn">Guardar Cambios</button>
             </div>
         </form>
+
+        <!-- Navigation buttons inside the container -->
+        <div class="nav-buttons">
+            <a href="index.php">Inicio</a>
+            <a href="login.php">Iniciar Sesión</a>
+            <a href="dashboard.php">Dashboard</a>
+            <a href="usuarios_ansible.php">Volver</a>
+        </div>
     </div>
 </body>
 </html>
