@@ -83,7 +83,7 @@
 <body>
 
     <div class="container">
-        <h2>Panel de Control de Copias de Seguridad</h2>
+        <h2>Panel de Control</h2>
 
         <form action="ejecutar.php" method="get">
             <input type="hidden" name="tipo" value="linux">
@@ -94,13 +94,15 @@
             <input type="hidden" name="tipo" value="windows">
             <button type="submit" class="backup-button">Backup Windows</button>
         </form>
+        
+        
 
         <!-- BOTÓN NUEVO (LLEVA A UN HTML) -->
         <a href="updateMachine.php" class="backup-button">Actualizar tu Máquina</a>
 
-        <div class="info-text">
-            <p>Elige el sistema para realizar una copia de seguridad remota en la nube o actualizar tu máquina.</p>
-        </div>
+
+        <a href="usuarios_ansible.php" class="backup-button">Añadir usuarios en máquinas Linux</a>
+
     </div>
 
 </body>
