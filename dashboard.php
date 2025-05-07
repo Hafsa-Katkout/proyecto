@@ -98,7 +98,7 @@
         
 
         <!-- BOTÓN NUEVO (LLEVA A UN HTML) -->
-        <a href="updateMachine.php" class="backup-button">Actualizar tu Máquina</a>
+        <a href="updateMachine.php" class="backup-button">Actualizar tu Máquina Linux</a>
 
 
         <a href="usuarios_ansible.php" class="backup-button">Añadir usuarios en máquinas Linux</a>
