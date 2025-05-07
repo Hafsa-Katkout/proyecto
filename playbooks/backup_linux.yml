@@ -10,7 +10,7 @@
       command: tar czf /tmp/etc_backup.tar.gz /etc
 
 - name: Descargar el backup a la máquina local con nombre incremental
-  hosts: localhost
+  hosts: all  # CAMBIADO: ya no es localhost
   vars:
     local_backup_base: "/home/ubuntu/backups/etc_backup"
     ext: ".tar.gz"
@@ -20,6 +20,7 @@
         path: /home/ubuntu/backups
         state: directory
         mode: '0755'
+      delegate_to: localhost
 
     - name: Obtener nombres existentes
       find:
@@ -30,31 +31,16 @@
 
     - name: Calcular siguiente número disponible
       set_fact:
-        backup_counter: >-
-          {{
-            (
-              existing_files.files
-              | map(attribute='path')
-              | map('basename')
-              | map('regex_search', '^etc_backup(\\d*)\\.tar\\.gz$')
-              | map('last')
-              | map('int')
-              | list
-              | max(default=0)
-            ) + 1
-          }}
+        next_backup_number: "{{ (existing_files.files | map(attribute='path') | map('basename') | map('regex_search', '^etc_backup(\\d*)\\.tar\\.gz$') | map('last') | map('int') | list | max() | default(0)) + 1 }}"
+      delegate_to: localhost
 
     - name: Definir nombre final del archivo
       set_fact:
-        backup_filename: >-
-          {{
-            local_backup_base ~
-            ('' if backup_counter == 1 else backup_counter) ~
-            ext
-          }}
+        backup_filename: "{{ local_backup_base }}{{ '' if next_backup_number == 1 else next_backup_number }}{{ ext }}"
+      delegate_to: localhost
 
     - name: Copiar backup desde la máquina remota
-      ansible.builtin.fetch:
+      fetch:
         src: /tmp/etc_backup.tar.gz
         dest: "{{ backup_filename }}"
         flat: yes
