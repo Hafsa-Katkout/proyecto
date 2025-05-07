@@ -1,60 +1,75 @@
 <?php
-// Obtener el tipo de backup desde el botón
-if (!isset($_GET['tipo'])) {
-    die("Tipo de backup no especificado.");
+// Mostrar errores (para depuración)
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+// Conexión a la base de datos
+include("db.php");
+
+function mostrarError($mensaje) {
+    echo "<div style='color:red; font-weight:bold;'>$mensaje</div>";
 }
 
-$tipo = $_GET['tipo'];
+// Verificamos si los datos fueron enviados por POST
+if (isset($_POST['ip'], $_POST['usuario'], $_POST['ruta_clave'])) {
+    $ip = $_POST['ip'];
+    $usuario = $_POST['usuario'];
+    $ruta_clave = $_POST['ruta_clave'];  // Ruta completa para guardar el archivo
 
-// Verificamos si el tipo es válido
-if ($tipo !== 'linux' && $tipo !== 'windows') {
-    die("Tipo de backup inválido.");
-}
-
-// Datos de conexión a la base de datos
-$host = 'localhost';
-$db = 'proyecto_db';
-$user = 'root';
-$pass = 'Hafsa@2005';
-
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    // Obtener la ruta del playbook desde la base de datos
-    $stmt = $pdo->prepare("SELECT ruta FROM playbooks WHERE nombre = :nombre");
-    $playbook_nombre = ($tipo === 'linux') ? 'Backup Linux' : 'Backup Windows';
-    $stmt->bindParam(':nombre', $playbook_nombre);
+    // Obtenemos la clave privada de la base de datos
+    $stmt = $conn->prepare("SELECT clave_privada FROM datos WHERE ip = ?");
+    $stmt->bind_param("s", $ip);
     $stmt->execute();
+    $stmt->bind_result($clave_privada);
+    $stmt->fetch();
+    $stmt->close();
 
-    $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
-    if (!$resultado) {
-        die("Playbook no encontrado en la base de datos.");
+    if (!$clave_privada) {
+        mostrarError("Error: No se encontró la clave privada para esta máquina.");
+        exit;
     }
 
-    $playbook_ruta = $resultado['ruta'];
+    echo "IP: $ip<br>";
+    echo "Usuario: $usuario<br>";
+    echo "Ruta clave: $ruta_clave<br>";
+    echo "Clave privada (parte): " . htmlspecialchars(substr($clave_privada, 0, 30)) . "...<br><br>";
 
-    // Configurar el archivo de inventario
-    $inventario = '/var/www/html/proyecto/inventory.ini';
+    // Crear el archivo con el contenido de la clave privada
 
-    // Configurar ANSIBLE para usar directorio temporal sin errores
-    $ansible_cfg = '/var/www/html/proyecto/ansible.cfg';
-    $env = "ANSIBLE_CONFIG=$ansible_cfg ANSIBLE_REMOTE_TEMP=/tmp/.ansible/tmp";
+// Decodificar la clave desde base64 (como está en la base de datos)
+$clave_privada_decodificada = base64_decode($clave_privada);
 
-    // Añadimos redirección de errores para capturar todo
-    $comando = "$env ansible-playbook $playbook_ruta -i $inventario 2>&1";
+// Escapar el contenido para usarlo en shell con seguridad
+$clave_privada_final_escaped = escapeshellarg($clave_privada_decodificada);
 
-    exec($comando, $output, $result);
+// Crear el archivo con sudo usando echo + tee
+$command = "echo $clave_privada_final_escaped | sudo tee $ruta_clave > /dev/null";
+shell_exec($command);
 
-    echo "<h3>Resultado del Backup ($tipo)</h3>";
-    echo "<h4>Comando ejecutado:</h4><pre>$comando</pre>";
-    echo "<h4>Código de salida:</h4><pre>$result</pre>";
-    echo "<h4>Salida del comando:</h4><pre>";
-    print_r($output);
-    echo "</pre>";
 
-} catch (PDOException $e) {
-    echo "Error de conexión a la base de datos: " . $e->getMessage();
+// Step 7: Change the ownership and permissions using sudo
+$command_chown = "sudo chown ubuntu:ubuntu $ruta_clave && sudo chmod 400 $ruta_clave";
+shell_exec($command_chown);
+
+
+
+   
+
+    echo "Private key has been written, ownership and permissions updated!";
+
+    $playbook = '/var/www/html/proyecto/playbooks/backup_linux.yml'; // nombre de tu playbook
+    $playbook = escapeshellarg($playbook);
+
+    // Desactivamos la verificación de claves SSH y ejecutamos el playbook con IP directa
+    $command = "sudo ansible-playbook -i $ip, -u $usuario --private-key $ruta_clave $playbook 2>&1";
+
+    echo "<h3>Ejecutando:</h3><pre>$command</pre>";
+
+    // Ejecutamos el comando y capturamos salida
+    $output = shell_exec($command);
+
+    echo "<h3>Resultado:</h3><pre>$output</pre>";
+} else {
+    mostrarError("Error: Faltan datos para ejecutar la actualización.");
 }
 ?>
-

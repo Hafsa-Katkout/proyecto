@@ -85,15 +85,9 @@
     <div class="container">
         <h2>Panel de Control</h2>
 
-        <form action="ejecutar.php" method="get">
-            <input type="hidden" name="tipo" value="linux">
-            <button type="submit" class="backup-button">Backup Linux</button>
-        </form>
+        <a href="backupMachine.php" class="backup-button">Copia de Seguridad en Cloud de tu Máquina Linux</a>
 
-        <form action="ejecutar.php" method="get">
-            <input type="hidden" name="tipo" value="windows">
-            <button type="submit" class="backup-button">Backup Windows</button>
-        </form>
+        <a href="updateMachine.php" class="backup-button">Copia de Seguridad en Cloud de tu Máquina Windows</a>
         
         
 

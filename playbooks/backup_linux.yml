@@ -1,35 +1,69 @@
 ---
-- name: Backup en máquinas Linux a AWS con nombre dinámico
-  hosts: linux
+- name: Crear backup de /etc en la máquina remota
+  hosts: all
   become: yes
   tasks:
-    - name: Crear carpeta de backup
+    - name: Prueba de conexión
+      ping:
+
+    - name: Comprimir /etc en la máquina remota
+      command: tar czf /tmp/etc_backup.tar.gz /etc
+
+- name: Descargar el backup a la máquina local con nombre incremental
+  hosts: localhost
+  vars:
+    local_backup_base: "/home/ubuntu/backups/etc_backup"
+    ext: ".tar.gz"
+  tasks:
+    - name: Asegurar que la carpeta local de backups exista
       file:
-        path: /tmp/backup/
+        path: /home/ubuntu/backups
         state: directory
+        mode: '0755'
 
-    - name: Comprimir /etc
-      command: tar czf /tmp/backup/etc_backup.tar.gz /etc
+    - name: Obtener nombres existentes
+      find:
+        paths: /home/ubuntu/backups
+        patterns: "etc_backup*.tar.gz"
+      register: existing_files
+      delegate_to: localhost
 
-    #- name: Obtener el nombre de la máquina y la fecha automáticamente
-    #  set_fact:
-     #   backup_name: "{{ inventory_hostname }}_linux_{{ ansible_date_time.date }}_{{ ansible_date_time.hour }}{{ ansible_date_time.minute }}.tar.gz"
+    - name: Calcular siguiente número disponible
+      set_fact:
+        backup_counter: >-
+          {{
+            (
+              existing_files.files
+              | map(attribute='path')
+              | map('basename')
+              | map('regex_search', '^etc_backup(\\d*)\\.tar\\.gz$')
+              | map('last')
+              | map('int')
+              | list
+              | max(default=0)
+            ) + 1
+          }}
 
-   # - name: Renombrar el archivo con el nombre dinámico
-    #  command: mv /tmp/backup/etc_backup.tar.gz /tmp/backup/{{ backup_name }
-              #- name: Copiar el backup a AWS
-              #copy:
-              #  src: /tmp/backup/etc_backup.tar.gz
-              #  dest: /home/ubuntu/
-    - name: copiar la carpeta comprimida
-      command: cp /tmp/backup/etc_backup.tar.gz /home/ubuntu
+    - name: Definir nombre final del archivo
+      set_fact:
+        backup_filename: >-
+          {{
+            local_backup_base ~
+            ('' if backup_counter == 1 else backup_counter) ~
+            ext
+          }}
 
-       # mode: push
-        #ansible_ssh_user: ubuntu
-        #ansible_ssh_private_key_file: "/home/usuario/.ssh/labsuser.pem"
-        #ansible_host: 44.218.152.238
+    - name: Copiar backup desde la máquina remota
+      ansible.builtin.fetch:
+        src: /tmp/etc_backup.tar.gz
+        dest: "{{ backup_filename }}"
+        flat: yes
 
-    - name: Limpiar archivo de backup local
+- name: Limpiar archivo de backup temporal en la máquina remota
+  hosts: all
+  become: yes
+  tasks:
+    - name: Eliminar el archivo comprimido del remoto (limpieza)
       file:
-        path: /tmp/backup/etc_backup.tar.gz
+        path: /tmp/etc_backup.tar.gz
         state: absent
