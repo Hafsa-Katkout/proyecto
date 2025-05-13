@@ -24,60 +24,85 @@ try {
     <meta charset="UTF-8">
     <title>Lista de Hosts Windows</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-image: url('/images/windows_espacio.jpg'); /* Replace with your background image URL */
-            background-size: cover;
-            background-position: center;
-            padding: 20px;
-            color: #333;
-        }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.8); /* Transparent white background */
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* White shadow effect on table */
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-        th, td {
-            padding: 12px;
-            border-bottom: 1px solid #dee2e6;
-            text-align: center;
-        }
-        th {
-            background-color: #007BFF;
-            color: white;
-            font-size: 16px;
-        }
-        tr:hover {
-            background-color: #f8f9fa;
-        }
-        .btn {
-            padding: 8px 12px;
-            text-decoration: none;
-            color: white;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-        .btn-ver {
-            background-color: #28a745;
-        }
-        .btn-accion {
-            background-color: #ffc107;
-        }
-        h2 {
-            text-align: center;
-            color: #fff;
-            font-size: 2em;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5); /* Adding shadow for impressive text */
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-    </style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url('/images/windows_espacio2.jpg'); /* Replace with your background image URL */
+        background-size: cover;
+        background-position: center;
+        padding: 20px;
+        color: #333;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.8); /* Transparent white background */
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* White shadow effect on table */
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+
+    th, td {
+        padding: 12px;
+        border-bottom: 2px solid #f0f0f0; /* Light gray border between rows */
+        text-align: center;
+    }
+
+    th {
+        background-color: #007BFF;
+        color: white;
+        font-size: 16px;
+    }
+
+    tr:hover {
+        background-color: #f8f9fa;
+    }
+
+    .btn {
+        padding: 12px 25px;
+        text-decoration: none;
+        color: black; /* Black text inside */
+        background-color: white; /* Solid white background */
+        border-radius: 25px; /* Attractive rounded shape */
+        font-size: 16px;
+        display: inline-block;
+        text-align: center;
+        margin: 5px 10px;
+        border: 2px solid black; /* Black border */
+        transition: background-color 0.3s ease, color 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    }
+
+    .btn-ver {
+        border-color: black; /* Black border for "Ver detalles" */
+        color: black; /* Black text */
+    }
+
+    .btn-accion {
+        border-color: black; /* Black border for "Ejecutar acción" */
+        color: black; /* Black text */
+    }
+
+    .btn:hover {
+        background-color: #b3e0ff; /* Sky blue close to white */
+        color: white; /* White text on hover */
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+    }
+
+    h2 {
+        text-align: center;
+        color: #fff;
+        font-size: 2em;
+        text-shadow: 2px 2px 10px rgba(0,0,0,0.5); /* Adding shadow for impressive text */
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+</style>
+
 </head>
 <body>
 
@@ -90,7 +115,7 @@ try {
                 <th>ID</th>
                 <th>IP</th>
                 <th>Usuario</th>
-                <th>Contraseña (Hasheada)</th>
+                <th>Contraseña</th>
                 <th>Creado</th>
                 <th>Acciones</th>
             </tr>
@@ -103,14 +128,23 @@ try {
                     <td><?= htmlspecialchars($host['usuario']) ?></td>
                     <td>
                         <?php
-                        $hashed_password = password_hash($host['contraseña'], PASSWORD_BCRYPT);
+                        $hashed_password = password_hash($host['contrasena'], PASSWORD_BCRYPT);
                         echo htmlspecialchars($hashed_password); // Muestra el hash
                         ?>
                     </td>
                     <td><?= htmlspecialchars($host['tiempo_creación']) ?></td>
                     <td>
-                        <a class="btn btn-ver" href="ver_host.php?id=<?= $host['id'] ?>">Ver detalles</a>
-                        <a class="btn btn-accion" href="ejecutar_accion.php?id=<?= $host['id'] ?>">Ejecutar acción</a>
+                        <a class="btn btn-ver" href="ver_host.php?id=<?= $host['id'] ?>">Modificar</a>
+                        <form id="form-ejecutar-<?= $host['id'] ?>" action="ejecutar_windows_espacio.php" method="POST" style="display: none;">
+                            <input type="hidden" name="ip" value="<?= $host['ip'] ?>">
+                            <input type="hidden" name="user" value="<?= $host['usuario'] ?>">
+                            <input type="hidden" name="password" value="<?= $host['password'] ?>">
+                        </form>
+
+<a class="btn btn-accion" href="#" onclick="document.getElementById('form-ejecutar-<?= $host['id'] ?>').submit();">
+    Ejecutar acción
+</a>
+
                     </td>
                 </tr>
             <?php endforeach; ?>

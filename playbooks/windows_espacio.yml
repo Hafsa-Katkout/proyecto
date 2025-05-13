@@ -1,0 +1,22 @@
+---
+- name: Obtener espacio libre en C: en máquinas Windows usando SSH
+  hosts: all
+  gather_facts: no
+  vars:
+    ansible_connection: ssh
+    ansible_shell_type: powershell
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+
+  tasks:
+    - name: Obtener espacio libre en la unidad C:
+      ansible.builtin.shell: |
+        $drive = Get-WmiObject Win32_LogicalDisk -Filter "DeviceID='C:'"
+        $free = [math]::round($drive.FreeSpace / 1GB, 2)
+        $total = [math]::round($drive.Size / 1GB, 2)
+        Write-Output "Espacio libre: $free GB de $total GB"
+      register: espacio_c
+
+    - name: Mostrar resultado
+      debug:
+        var: espacio_c.stdout_lines
+ 
