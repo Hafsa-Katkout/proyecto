@@ -1,27 +1,24 @@
 ---
-- name: Actualizar máquinas Windows remotamente usando SSH
+- name: Obtener información del sistema en máquinas Windows
   hosts: all
   gather_facts: no
-  vars:
-    ansible_connection: ssh
-    ansible_shell_type: powershell
-    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
-
   tasks:
-    - name: Instalar el módulo PSWindowsUpdate (si no está instalado)
-      win_powershell:
-        script: |
-          if (-not (Get-Command "Install-WindowsUpdate" -ErrorAction SilentlyContinue)) {
-            Install-Module -Name PSWindowsUpdate -Force -Scope CurrentUser
-          }
-      register: pswindowsupdate_installed
 
-    - name: Buscar actualizaciones de Windows
-      win_powershell:
-        script: |
-          Install-WindowsUpdate -AcceptAll -AutoReboot
-      register: update_result
+    - name: Obtener información básica del sistema usando systeminfo en PowerShell
+      win_command: systeminfo
+      register: systeminfo_output
+      ignore_errors: yes
 
-    - name: Mostrar resultado de la actualización
+    - name: Verificar la salida del comando
       debug:
-        var: update_result.stdout_lines
+        var: systeminfo_output
+
+    - name: Reemplazar saltos de línea y limpiar espacios extra
+      set_fact:
+        systeminfo_lines: "{{ systeminfo_output.stdout | regex_replace('\\r', '') | split('\n') }}"
+
+    - name: Mostrar cada línea de la salida limpia
+      debug:
+        msg: "{{ item }}"
+      with_items: "{{ systeminfo_lines }}"
+      when: item != ""
