@@ -7,7 +7,7 @@ $user = escapeshellarg($_POST['user']);
 $password = escapeshellarg($_POST['password']);
 
 // Comando Ansible
-$command = "sudo ansible-playbook /var/www/html/proyecto/playbooks/windows_espacio.yml "
+$command = "ansible-playbook /var/www/html/proyecto/playbooks/windows_espacio.yml "
          . "-i $ip, "
          . "--extra-vars \"ansible_python_interpreter=python3 ansible_user=$user ansible_password=$password "
          . "ansible_connection=ssh ansible_shell_type=powershell "
