@@ -140,7 +140,7 @@ try {
                         <form id="form-ejecutar-<?= $host['id'] ?>" action="ejecutar_windows_espacio.php" method="POST" style="display: none;">
                             <input type="hidden" name="ip" value="<?= $host['ip'] ?>">
                             <input type="hidden" name="user" value="<?= $host['usuario'] ?>">
-                            <input type="hidden" name="password" value="<?= $host['contrasena'] ?>">
+                            <input type="hidden" name="password" value="<?= htmlspecialchars($host['contrasena']) ?>">
                         </form>
 
 <a class="btn btn-accion" href="#" onclick="document.getElementById('form-ejecutar-<?= $host['id'] ?>').submit();">
