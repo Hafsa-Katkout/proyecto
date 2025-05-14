@@ -28,7 +28,7 @@ try {
     <style>
     body {
         font-family: Arial, sans-serif;
-        background-image: url('/images/windows_espacio2.jpg'); /* Replace with your background image URL */
+        background-image: url('/images/windows_espacio_back.jpg'); /* Replace with your background image URL */
         background-size: cover;
         background-position: center;
         padding: 20px;
