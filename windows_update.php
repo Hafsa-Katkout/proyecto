@@ -103,6 +103,18 @@ try {
         margin: 0 auto;
         padding: 20px;
     }
+ .btn-add {
+    background-color:rgb(83, 196, 238); /* Bootstrap green */
+    color: white;
+    font-weight: bold;
+    border-color:rgb(83, 196, 238);
+}
+
+.btn-add:hover {
+    background-color:rgb(83, 196, 238);
+    color: white;
+}
+
 </style>
 
 </head>
@@ -110,6 +122,8 @@ try {
 
 <div class="container">
     <h2>Listado de Hosts Windows</h2>
+    <a class="btn btn-add" href="agregar_windows2.php"> Añadir nueva máquina</a>
+
 
     <table>
         <thead>
