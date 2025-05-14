@@ -97,6 +97,7 @@
 
         <a href="usuarios_ansible.php" class="backup-button">Añadir usuarios en máquinas Linux</a>
         <a href="windows_espacio.php" class="backup-button">Comprobar espacio en disco en máquinas Windows</a>
+        <a href="windows_update.php" class="backup-button">Actualización Remota de Máquinas Windows</a>
 
     </div>
 
