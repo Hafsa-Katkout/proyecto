@@ -1,4 +1,6 @@
 <?php
+
+
 // Configuración de la base de datos
 $host = 'localhost';
 $db = 'proyecto_db';
@@ -138,7 +140,7 @@ try {
                         <form id="form-ejecutar-<?= $host['id'] ?>" action="ejecutar_windows_espacio.php" method="POST" style="display: none;">
                             <input type="hidden" name="ip" value="<?= $host['ip'] ?>">
                             <input type="hidden" name="user" value="<?= $host['usuario'] ?>">
-                            <input type="hidden" name="password" value="<?= $host['password'] ?>">
+                            <input type="hidden" name="password" value="<?= $host['contrasena'] ?>">
                         </form>
 
 <a class="btn btn-accion" href="#" onclick="document.getElementById('form-ejecutar-<?= $host['id'] ?>').submit();">
