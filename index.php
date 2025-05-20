@@ -249,7 +249,7 @@
       <p>La plataforma inteligente para automatizar, gestionar y hacer crecer tu negocio como nunca antes.</p>
       <div class="hero-buttons">
         <a href="login.php">Iniciar Sesión</a>
-        <a href="registro.php">Registrar</a>
+
       </div>
     </div>
 

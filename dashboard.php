@@ -99,6 +99,12 @@
             padding: 15px 40px;
             font-size: 18px;
         }
+        .top-right-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
@@ -107,6 +113,10 @@
     <div class="top-left-buttons">
         <a href="index.php" class="backup-button">Inicio</a>
         <a href="ayuda.html" class="backup-button">Ayuda</a>
+    </div>
+    <!-- NUEVO BOTÓN SUPERIOR DERECHO -->
+    <div class="top-right-button">
+        <a href="registro.php" class="backup-button">Añadir Controlador</a>
     </div>
 
     <div class="container">

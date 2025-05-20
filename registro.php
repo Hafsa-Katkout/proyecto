@@ -115,13 +115,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <div class="left-side">
         <h1>Domina <span class="highlight">SysFero </span>y controla todo</h1>
         <hr />
-        <p class="small-text">¿Ya forma parte de nuestra comunidad? ¡Perfecto! Vaya a "Iniciar sesión" y acceda de inmediato. Si aún no se ha registrado, está en el lugar ideal. Solo ingrese sus datos y únase a nosotros. ¿Se siente perdido o tiene alguna duda? ¡No hay problema! Haga clic en el botón de 'Ayuda' y con gusto le ayudaremos.</p>
+        <p class="small-text">En esta sección puedes registrar los datos del nuevo controlador de la aplicación.
+Ten en cuenta que al conceder acceso, asumes toda la responsabilidad sobre el uso que esta persona haga del sistema. Añadir a alguien no autorizado podría representar un riesgo para la seguridad y estabilidad del servicio.</p>
         <a href="ayuda.html" class="white-button ayuda-button">Ayuda</a>
       </div>
 
       <div class="right-box">
-        <h2 class="main-title">¡Regístrate!</h2>
-        <p class="description">Introduzca sus datos aquí y regístrese para formar parte de SysFero. ¡Estamos emocionados de tenerlo con nosotros!</p>
+        <h2 class="main-title">Nuevo usuario</h2>
+        <p class="description">Información del Usuario a Registrar...</p>
         <form method="POST" action="registro.php">
           <label class="input-label" for="nombre_usuario">Nombre de usuario</label>
           <input class="input-field" type="text" name="nombre_usuario" id="nombre_usuario" required>

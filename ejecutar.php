@@ -4,21 +4,22 @@ echo <<<HTML
   body {
     margin: 0;
     padding: 0;
-    background: url('fondo.jpg') no-repeat center center fixed;
+    background: url('/images/back_ejecutar.jpg') no-repeat center center fixed;
     background-size: cover;
     font-family: 'Segoe UI', sans-serif;
   }
 
   .resultado-contenedor {
-    background-color: rgba(255, 255, 255, 0.95);
-    color: #000;
-    padding: 30px;
-    width: 80%;
-    max-width: 900px;
-    margin: 50px auto;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-  }
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #000;
+  padding: 30px;
+  width: 80%;
+  max-width: 900px;
+  margin: 100px auto 50px auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
 
   .resultado-contenedor pre {
     background-color: #f0f0f0;
@@ -31,6 +32,32 @@ echo <<<HTML
   h3 {
     margin-top: 30px;
   }
+  .botones-superiores {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+    }
+
+    .boton-navegacion {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 5px;
+        font-size: 14px;
+        font-weight: bold;
+        color: white;
+        background-color: transparent;
+        border: 2px solid white;
+        border-radius: 6px;
+        text-decoration: none;
+        box-shadow: 0 0 8px white;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .boton-navegacion:hover {
+        background-color: #e0f7ff;
+        color: #007bff;
+    }
 </style>
 HTML;
 
@@ -65,6 +92,14 @@ if (isset($_POST['ip'], $_POST['usuario'], $_POST['ruta_clave'])) {
     }
 
     echo "<div class='resultado-contenedor'>";
+    echo <<<HTML
+<div class="botones-superiores">
+        <a href="backupMachine.php" class="boton-navegacion">Volver</a>
+        <a href="logout.php" class="boton-navegacion">Cerrar sesión</a>
+        <a href="ayuda.html" class="boton-navegacion">Ayuda</a>
+    </div>
+HTML;
+
 echo "IP: $ip<br>";
 echo "Usuario: $usuario<br>";
 echo "Ruta clave: $ruta_clave<br>";
@@ -108,4 +143,5 @@ shell_exec($command_chown);
 } else {
     mostrarError("Error: Faltan datos para ejecutar la actualización.");
 }
+
 ?>

@@ -210,14 +210,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="left-section">
             <h1>Iniciar sesión</h1>
             <h2>Bienvenido a SysFero</h2>
-            <p>Accede a tu cuenta para continuar. Si no tienes cuenta, puedes registrarte.</p>
+            <p>Accede a tu cuenta para continuar. Si no tienes cuenta, ponte en contacto con los administradores.</p>
             <div class="buttons">
                 <form method="POST" action="login.php">
                     <input type="text" id="nombre_usuario" name="nombre_usuario" placeholder="Nombre de usuario" required>
                     <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required>
                     <button type="submit" class="signin">Iniciar sesión</button>
                 </form>
-                <a href="registro.php"><button class="register">Registrar</button></a>
+                
             </div>
         </div>
         <div class="right-section">
