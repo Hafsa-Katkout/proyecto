@@ -1,5 +1,5 @@
 <?php
-include 'dbconfig.php';  // Include the database connection
+include 'dbconfig.php';  
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nombre_usuario = $_POST['nombre_usuario'];
@@ -57,8 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   box-shadow: 0 0 5px white;
   text-align: center;
   height: 45px;
-  background: transparent;       /* 👈 Important for buttons */
-  cursor: pointer;               /* 👈 Makes <button> look like a clickable link */
+  background: transparent;       
+  cursor: pointer;               
 }
 .white-button:hover {
   background-color: #87CEEB;

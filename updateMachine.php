@@ -35,6 +35,16 @@ $resultado = $conexion->query($consulta);
             font-weight: 600;
             text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
         }
+         h {
+    display: block;
+    width: 60%;
+    margin: 20px auto 0;
+    color: white;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
 
         table {
             width: 80%;
@@ -109,7 +119,33 @@ $resultado = $conexion->query($consulta);
         .boton-agregar:hover {
             background-color: #0056b3;
         }
+        
+        .botones-superiores {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+    }
 
+    .boton-navegacion {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 5px;
+        font-size: 14px;
+        font-weight: bold;
+        color: white;
+        background-color: transparent;
+        border: 2px solid white;
+        border-radius: 6px;
+        text-decoration: none;
+        box-shadow: 0 0 8px white;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .boton-navegacion:hover {
+        background-color: #e0f7ff;
+        color: #007bff;
+    }
         /* Efectos responsive */
         @media (max-width: 768px) {
             table {
@@ -129,7 +165,9 @@ $resultado = $conexion->query($consulta);
 </head>
 <body>
 
-    <h2>Listado de todas las máquinas registradas</h2>
+    <h2>Actualización para Sistemas Linux</h2>
+    <h>Por favor, elige la máquina que deseas actualizar.
+    ¡Si tienes alguna duda o inconveniente, no dudes en contactarnos!. Estamos aquí para ayudarte.</h>
 
     <table>
         <tr>
@@ -174,6 +212,10 @@ $resultado = $conexion->query($consulta);
 
     <!-- Botón para añadir nueva máquina -->
     <a href="addMachine.php" class="boton-agregar">Añadir nueva máquina</a>
-
+    <div class="botones-superiores">
+        <a href="dashboard.php" class="boton-navegacion">Volver</a>
+        <a href="logout.php" class="boton-navegacion">Cerrar sesión</a>
+        <a href="ayuda.html" class="boton-navegacion">Ayuda</a>
+    </div>
 </body>
 </html>

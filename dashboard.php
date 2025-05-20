@@ -15,24 +15,24 @@
             background-image: url('images/dash.jpg');
             background-size: cover;
             background-position: center;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            min-height: 100vh;
             color: #fff;
-            overflow: hidden;
+            overflow-y: auto;
         }
+
         .container {
-            padding: 40px;
+            padding: 100px 40px;
             border-radius: 20px;
             text-align: center;
-            max-width: 500px;
-            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(10px);
             background: rgba(255, 255, 255, 0.1);
             animation: fadeIn 1s ease-out;
+            margin-top: 120px;
         }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -43,6 +43,7 @@
                 transform: translateY(0);
             }
         }
+
         h2 {
             font-size: 32px;
             margin-bottom: 25px;
@@ -50,6 +51,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+
         .backup-button {
             display: inline-block;
             margin: 15px;
@@ -64,40 +66,63 @@
             text-decoration: none;
             transition: all 0.3s ease;
         }
+
         .backup-button:hover {
             background-color: #fff;
             color: #333;
             transform: translateY(-5px);
         }
+
         form {
             display: inline-block;
             margin: 15px 0;
         }
+
         .info-text {
             font-size: 16px;
             color: #d1d1d1;
             margin-top: 25px;
         }
+
+        /* Botones superiores izquierdos fijos y más grandes */
+        .top-left-buttons {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .top-left-buttons .backup-button {
+            padding: 15px 40px;
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
+
+    <!-- BOTONES SUPERIORES IZQUIERDOS FIJOS Y GRANDES -->
+    <div class="top-left-buttons">
+        <a href="index.php" class="backup-button">Inicio</a>
+        <a href="ayuda.html" class="backup-button">Ayuda</a>
+    </div>
 
     <div class="container">
         <h2>Panel de Control</h2>
 
         <a href="backupMachine.php" class="backup-button">Copia de Seguridad en Cloud de tu Máquina Linux</a>
 
-        <a href="updateMachine.php" class="backup-button">Copia de Seguridad en Cloud de tu Máquina Windows</a>
-        
-        
 
-        <!-- BOTÓN NUEVO (LLEVA A UN HTML) -->
         <a href="updateMachine.php" class="backup-button">Actualizar tu Máquina Linux</a>
 
-
-        <a href="usuarios_ansible.php" class="backup-button">Añadir usuarios en máquinas Linux</a>
         <a href="windows_espacio.php" class="backup-button">Comprobar espacio en disco en máquinas Windows</a>
-        <a href="windows_update.php" class="backup-button">Actualización Remota de Máquinas Windows</a>
+        <a href="windows_info.php" class="backup-button">Consulta de información del sistema en Windows</a>
+        <a href="configuracion_cisco.php" class="backup-button">Visualizar la Configuración Actual del Router Cisco</a>
+
+        <!-- Contenido extra para probar el scroll -->
+        <div style="height: 800px;"></div>
 
     </div>
 

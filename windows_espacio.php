@@ -114,16 +114,53 @@ try {
     background-color:rgb(83, 196, 238);
     color: white;
 }
+.botones-superiores {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+    }
 
+    .boton-navegacion {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 5px;
+        font-size: 14px;
+        font-weight: bold;
+        color: white;
+        background-color: transparent;
+        border: 2px solid white;
+        border-radius: 6px;
+        text-decoration: none;
+        box-shadow: 0 0 8px white;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .boton-navegacion:hover {
+        background-color: #e0f7ff;
+        color: #007bff;
+    }
+
+     h {
+    display: block;
+    width: 60%;
+    margin: 20px auto 0;
+    color: white;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
 </style>
 
 </head>
 <body>
 
 <div class="container">
-    <h2>Listado de Hosts Windows</h2>
+    <h2>Comprobación de Espacio en el Sistema Windows</h2>
     <a class="btn btn-add" href="agregar_windows.php"> Añadir nueva máquina</a>
-
+    <h>Por favor, selecciona la máquina Windows en la que deseas comprobar el espacio disponible.</h>
+    <h>Si necesitas ayuda o tienes alguna duda, puedes contactarnos en cualquier momento. Estamos a tu disposición.</h>
 
     <table>
         <thead>
@@ -163,6 +200,11 @@ try {
 
                     </td>
                 </tr>
+                <div class="botones-superiores">
+        <a href="dashboard.php" class="boton-navegacion">Volver</a>
+        <a href="logout.php" class="boton-navegacion">Cerrar sesión</a>
+        <a href="ayuda.html" class="boton-navegacion">Ayuda</a>
+    </div>
             <?php endforeach; ?>
         </tbody>
     </table>

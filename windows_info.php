@@ -114,6 +114,43 @@ try {
     background-color:rgb(83, 196, 238);
     color: white;
 }
+.botones-superiores {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+    }
+
+    .boton-navegacion {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 5px;
+        font-size: 14px;
+        font-weight: bold;
+        color: white;
+        background-color: transparent;
+        border: 2px solid white;
+        border-radius: 6px;
+        text-decoration: none;
+        box-shadow: 0 0 8px white;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .boton-navegacion:hover {
+        background-color: #e0f7ff;
+        color: #007bff;
+    }
+
+     h {
+    display: block;
+    width: 60%;
+    margin: 20px auto 0;
+    color: white;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
 
 </style>
 
@@ -121,9 +158,10 @@ try {
 <body>
 
 <div class="container">
-    <h2>Listado de Hosts Windows</h2>
+    <h2>Información del Sistema Windows</h2>
     <a class="btn btn-add" href="agregar_windows2.php"> Añadir nueva máquina</a>
-
+    <h>Por favor, selecciona la máquina Windows de la cual deseas obtener información del sistema.</h>
+    <h>Si tienes alguna pregunta o necesitas asistencia, no dudes en ponerte en contacto con nosotros. Estamos aquí para ayudarte.</h>
 
     <table>
         <thead>
@@ -151,7 +189,7 @@ try {
                     <td><?= htmlspecialchars($host['tiempo_creación']) ?></td>
                     <td>
                         <a class="btn btn-ver" href="ver_host.php?id=<?= $host['id'] ?>">Modificar</a>
-                        <form id="form-ejecutar-<?= $host['id'] ?>" action="ejecutar_windows_update.php" method="POST" style="display: none;">
+                        <form id="form-ejecutar-<?= $host['id'] ?>" action="ejecutar_windows_info.php" method="POST" style="display: none;">
                             <input type="hidden" name="ip" value="<?= $host['ip'] ?>">
                             <input type="hidden" name="user" value="<?= $host['usuario'] ?>">
                             <input type="hidden" name="password" value="<?= htmlspecialchars($host['contrasena']) ?>">
@@ -160,6 +198,10 @@ try {
 <a class="btn btn-accion" href="#" onclick="document.getElementById('form-ejecutar-<?= $host['id'] ?>').submit();">
     Ejecutar acción
 </a>
+<div class="botones-superiores">
+        <a href="dashboard.php" class="boton-navegacion">Volver</a>
+        <a href="logout.php" class="boton-navegacion">Cerrar sesión</a>
+        <a href="ayuda.html" class="boton-navegacion">Ayuda</a>
 
                     </td>
                 </tr>
