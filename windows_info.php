@@ -188,7 +188,7 @@ try {
                     </td>
                     <td><?= htmlspecialchars($host['tiempo_creación']) ?></td>
                     <td>
-                        <a class="btn btn-ver" href="ver_host.php?id=<?= $host['id'] ?>">Modificar</a>
+                        <a class="btn btn-ver" href="ver2_host.php?id=<?= $host['id'] ?>">Modificar</a>
                         <form id="form-ejecutar-<?= $host['id'] ?>" action="ejecutar_windows_info.php" method="POST" style="display: none;">
                             <input type="hidden" name="ip" value="<?= $host['ip'] ?>">
                             <input type="hidden" name="user" value="<?= $host['usuario'] ?>">

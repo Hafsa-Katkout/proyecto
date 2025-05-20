@@ -162,10 +162,10 @@ try {
         <button type="submit" class="btn">Guardar cambios</button>
     </form>
 
-    
+
 </div>
 <div class="botones-superiores">
-        <a href="windows_espacio.php" class="boton-navegacion">Volver</a>
+        <a href="windows_info.php" class="boton-navegacion">Volver</a>
         <a href="logout.php" class="boton-navegacion">Cerrar sesión</a>
         <a href="ayuda.html" class="boton-navegacion">Ayuda</a>
     </div>

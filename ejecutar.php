@@ -1,4 +1,39 @@
 <?php
+echo <<<HTML
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: url('fondo.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .resultado-contenedor {
+    background-color: rgba(255, 255, 255, 0.95);
+    color: #000;
+    padding: 30px;
+    width: 80%;
+    max-width: 900px;
+    margin: 50px auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  .resultado-contenedor pre {
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 8px;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  h3 {
+    margin-top: 30px;
+  }
+</style>
+HTML;
+
 // Mostrar errores (para depuración)
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -29,10 +64,11 @@ if (isset($_POST['ip'], $_POST['usuario'], $_POST['ruta_clave'])) {
         exit;
     }
 
-    echo "IP: $ip<br>";
-    echo "Usuario: $usuario<br>";
-    echo "Ruta clave: $ruta_clave<br>";
-    echo "Clave privada (parte): " . htmlspecialchars(substr($clave_privada, 0, 30)) . "...<br><br>";
+    echo "<div class='resultado-contenedor'>";
+echo "IP: $ip<br>";
+echo "Usuario: $usuario<br>";
+echo "Ruta clave: $ruta_clave<br>";
+echo "Clave privada (parte): " . htmlspecialchars(substr($clave_privada, 0, 30)) . "...<br><br>";
 
     // Crear el archivo con el contenido de la clave privada
 

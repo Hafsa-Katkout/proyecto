@@ -195,7 +195,7 @@ $resultado = $conexion->query($consulta);
                         </form>
 
                         <!-- Botón para editar -->
-                        <form action="modificarMachine.php" method="get" style="display:inline;">
+                        <form action="modificarMachine2.php" method="get" style="display:inline;">
                             <input type="hidden" name="id" value="<?php echo $fila['id']; ?>">
                             <button type="submit" class="boton boton-editar">Modificar</button>
                         </form>
@@ -211,11 +211,12 @@ $resultado = $conexion->query($consulta);
     </table>
 
     <!-- Botón para añadir nueva máquina -->
-    <a href="addMachine.php" class="boton-agregar">Añadir nueva máquina</a>
+    <a href="addMachine2.php" class="boton-agregar">Añadir nueva máquina</a>
     <div class="botones-superiores">
         <a href="dashboard.php" class="boton-navegacion">Volver</a>
         <a href="logout.php" class="boton-navegacion">Cerrar sesión</a>
         <a href="ayuda.html" class="boton-navegacion">Ayuda</a>
     </div>
+    
 </body>
 </html>

@@ -124,7 +124,7 @@
         <input type="submit" value="Insertar máquina">
     </form>
     <div class="botones-superiores">
-        <a href="backupMachine.php" class="boton-navegacion">Volver</a>
+        <a href="updateMachine.php" class="boton-navegacion">Volver</a>
         <a href="logout.php" class="boton-navegacion">Cerrar sesión</a>
         <a href="ayuda.html" class="boton-navegacion">Ayuda</a>
     </div>
