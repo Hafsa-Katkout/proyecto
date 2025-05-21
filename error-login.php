@@ -117,7 +117,7 @@
     <div class="button-container">
       <button onclick="location.href='index.php'">Inicio</button>
       <button onclick="location.href='login.php'">Iniciar session</button>
-      <button onclick="location.href='registro.php'">Registrar</button>
+
       <button onclick="location.href='ayuda.html'">Ayuda</button>
     </div>
   </div>
