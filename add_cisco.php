@@ -18,11 +18,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usuario = $_POST['usuario'];
     $contrasena = $_POST['contrasena'];
 
-    $stmt = $conn->prepare("INSERT INTO windows_hosts (ip, usuario, contrasena, tiempo_creación) VALUES (?, ?, ?, NOW())");
+    $stmt = $conn->prepare("INSERT INTO cisco_machines(ip, usuario, contrasena, tiempo_creación) VALUES (?, ?, ?, NOW())");
     $stmt->execute([$ip, $usuario, $contrasena]);
 
     // Redireccionar de vuelta al listado después de insertar
-    header("Location: windows_espacio.php");
+    header("Location: configuracion_cisco.php");
     exit;
 }
 ?>
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-image: url('images/addupdate2.jpg');
+            background-image: url('images/3.jpg');
             background-size: cover;
             display: flex;
             justify-content: center;
@@ -152,10 +152,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="password" name="contrasena" id="contrasena" required>
 
         <input type="submit" value="Guardar máquina">
-        <a href="windows_lista.php">⬅ Volver</a>
     </form>
     <div class="botones-superiores">
-        <a href="windows_espacio.php" class="boton-navegacion">Volver</a>
+        <a href="cofiguracion_cisco.php" class="boton-navegacion">Volver</a>
         <a href="logout.php" class="boton-navegacion">Cerrar sesión</a>
         <a href="ayuda.html" class="boton-navegacion">Ayuda</a>
     </div>

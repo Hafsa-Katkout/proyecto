@@ -4,7 +4,7 @@ echo <<<HTML
   body {
     margin: 0;
     padding: 0;
-    background: url('/images/back_ejecutar.jpg') no-repeat center center fixed;
+    background: url('/images/2.jpg') no-repeat center center fixed;
     background-size: cover;
     font-family: 'Segoe UI', sans-serif;
   }
@@ -68,7 +68,7 @@ $user = escapeshellarg($_POST['user']);
 $password = escapeshellarg($_POST['password']);
 
 // Comando Ansible
-$command = "ansible-playbook /var/www/html/proyecto/playbooks/windows_espacio.yml "
+$command = "ansible-playbook /var/www/html/proyecto/playbooks/cisco_conf.yml "
          . "-i $ip, "
          . "--extra-vars \"ansible_python_interpreter=python3 ansible_user=$user ansible_password=$password "
          . "ansible_connection=ssh ansible_shell_type=powershell "
@@ -76,7 +76,7 @@ $command = "ansible-playbook /var/www/html/proyecto/playbooks/windows_espacio.ym
 echo "<div class='resultado-contenedor'>";
     echo <<<HTML
 <div class="botones-superiores">
-        <a href="windows_espacio.php" class="boton-navegacion">Volver</a>
+        <a href="configuracion_cisco.php" class="boton-navegacion">Volver</a>
         <a href="logout.php" class="boton-navegacion">Cerrar sesión</a>
         <a href="ayuda.html" class="boton-navegacion">Ayuda</a>
     </div>

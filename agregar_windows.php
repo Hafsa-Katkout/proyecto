@@ -152,7 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="password" name="contrasena" id="contrasena" required>
 
         <input type="submit" value="Guardar máquina">
-        <a href="windows_lista.php">⬅ Volver</a>
+
     </form>
     <div class="botones-superiores">
         <a href="windows_espacio.php" class="boton-navegacion">Volver</a>

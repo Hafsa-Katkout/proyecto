@@ -28,7 +28,7 @@ try {
     <style>
     body {
         font-family: Arial, sans-serif;
-        background-image: url('/images/windows_espacio_back.jpg'); /* Replace with your background image URL */
+        background-image: url('/images/1.jpg'); /* Replace with your background image URL */
         background-size: cover;
         background-position: center;
         padding: 20px;
@@ -157,9 +157,9 @@ try {
 <body>
 
 <div class="container">
-    <h2>Comprobación de Espacio en el Sistema Windows</h2>
-    <a class="btn btn-add" href="agregar_windows.php"> Añadir nueva máquina</a>
-    <h>Por favor, selecciona la máquina Windows en la que deseas comprobar el espacio disponible.</h>
+    <h2>Comprobación de la configuración del router Cisco</h2>
+    <a class="btn btn-add" href="add_cisco.php"> Añadir nueva máquina</a>
+    <h>Por favor, selecciona la máquina en la que deseas comprobar la configuración.</h>
     <h>Si necesitas ayuda o tienes alguna duda, puedes contactarnos en cualquier momento. Estamos a tu disposición.</h>
 
     <table>
@@ -187,8 +187,8 @@ try {
                     </td>
                     <td><?= htmlspecialchars($host['tiempo_creación']) ?></td>
                     <td>
-                        <a class="btn btn-ver" href="ver_host.php?id=<?= $host['id'] ?>">Modificar</a>
-                        <form id="form-ejecutar-<?= $host['id'] ?>" action="ejecutar_windows_espacio.php" method="POST" style="display: none;">
+                        <a class="btn btn-ver" href="modificar_cisco.php?id=<?= $host['id'] ?>">Modificar</a>
+                        <form id="form-ejecutar-<?= $host['id'] ?>" action="ejecutar_cisco.php" method="POST" style="display: none;">
                             <input type="hidden" name="ip" value="<?= $host['ip'] ?>">
                             <input type="hidden" name="user" value="<?= $host['usuario'] ?>">
                             <input type="hidden" name="password" value="<?= htmlspecialchars($host['contrasena']) ?>">

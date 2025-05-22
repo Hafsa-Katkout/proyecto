@@ -14,7 +14,7 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Query to fetch the current data of the host
-    $stmt = $conn->prepare("SELECT * FROM windows_hosts WHERE id = :id");
+    $stmt = $conn->prepare("SELECT * FROM cisco_machines WHERE id = :id");
     $stmt->bindParam(':id', $id);
     $stmt->execute();
     $host = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -33,7 +33,7 @@ try {
         // Update query
         try {
             // Prepare the update query
-            $updateStmt = $conn->prepare("UPDATE windows_hosts SET ip = :ip, usuario = :usuario, contrasena = :contrasena WHERE id = :id");
+            $updateStmt = $conn->prepare("UPDATE cisco_machines SET ip = :ip, usuario = :usuario, contrasena = :contrasena WHERE id = :id");
 
             // Bind parameters
             $updateStmt->bindParam(':ip', $ip);
@@ -45,7 +45,7 @@ try {
             $updateStmt->execute();
 
             // If the update was successful, redirect to windows_espacio.php
-            header('Location: windows_espacio.php');
+            header('Location: configuracion_cisco.php');
             exit; // Make sure to stop the execution after redirect
 
         } catch (PDOException $e) {
@@ -67,7 +67,7 @@ try {
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url('/images/windows_espacio2.jpg');
+            background-image: url('/images/4.jpg');
             background-size: cover;
             background-position: center;
             padding: 20px;
@@ -165,7 +165,7 @@ try {
     
 </div>
 <div class="botones-superiores">
-        <a href="windows_espacio.php" class="boton-navegacion">Volver</a>
+        <a href="configuracion_cisco.php" class="boton-navegacion">Volver</a>
         <a href="logout.php" class="boton-navegacion">Cerrar sesión</a>
         <a href="ayuda.html" class="boton-navegacion">Ayuda</a>
     </div>
