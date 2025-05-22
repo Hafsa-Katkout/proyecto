@@ -16,9 +16,10 @@ try {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ip = $_POST['ip'];
     $usuario = $_POST['usuario'];
-    $contrasena = $_POST['contrasena'];
+    $contrasena = password_hash($_POST['contrasena'], PASSWORD_DEFAULT);
 
-    $stmt = $conn->prepare("INSERT INTO cisco_machines(ip, usuario, contrasena, tiempo_creación) VALUES (?, ?, ?, NOW())");
+
+    $stmt = $conn->prepare("INSERT INTO cisco_machines(ip, usuario, contrasena, tiempo_creacion) VALUES (?, ?, ?, NOW())");
     $stmt->execute([$ip, $usuario, $contrasena]);
 
     // Redireccionar de vuelta al listado después de insertar
@@ -154,7 +155,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="submit" value="Guardar máquina">
     </form>
     <div class="botones-superiores">
-        <a href="cofiguracion_cisco.php" class="boton-navegacion">Volver</a>
+        <a href="configuracion_cisco.php" class="boton-navegacion">Volver</a>
         <a href="logout.php" class="boton-navegacion">Cerrar sesión</a>
         <a href="ayuda.html" class="boton-navegacion">Ayuda</a>
     </div>

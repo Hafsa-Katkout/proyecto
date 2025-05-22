@@ -28,7 +28,7 @@ try {
     <style>
     body {
         font-family: Arial, sans-serif;
-        background-image: url('/images/1.jpg'); /* Replace with your background image URL */
+        background-image: url('/images/cisco_fondo.jpg'); /* Replace with your background image URL */
         background-size: cover;
         background-position: center;
         padding: 20px;
