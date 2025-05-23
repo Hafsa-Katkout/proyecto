@@ -1,0 +1,19 @@
+---
+- name: Ver configuración actual en un router Cisco
+  hosts: all
+  gather_facts: no
+
+  vars:
+    ansible_connection: network_cli
+    ansible_network_os: cisco.ios.ios
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+
+  tasks:
+    - name: Ver la configuración actual (running-config)
+      ios_command:
+        commands: show running-config
+      register: configuracion_actual
+
+    - name: Mostrar resultado
+      debug:
+        var: configuracion_actual.stdout_lines

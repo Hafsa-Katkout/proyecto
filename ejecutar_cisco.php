@@ -68,10 +68,10 @@ $user = escapeshellarg($_POST['user']);
 $password = escapeshellarg($_POST['password']);
 
 // Comando Ansible
-$command = "ansible-playbook /var/www/html/proyecto/playbooks/cisco_conf.yml "
+$command = "ansible-playbook /var/www/html/proyecto/playbooks/cisco_config.yml "
          . "-i $ip, "
-         . "--extra-vars \"ansible_python_interpreter=python3 ansible_user=$user ansible_password=$password "
-         . "ansible_connection=ssh ansible_shell_type=powershell "
+         . "--extra-vars \"ansible_user=$user ansible_password=$password "
+         . "ansible_connection=network_cli ansible_network_os=cisco.ios.ios "
          . "ansible_ssh_common_args='-o StrictHostKeyChecking=no'\"";
 echo "<div class='resultado-contenedor'>";
     echo <<<HTML

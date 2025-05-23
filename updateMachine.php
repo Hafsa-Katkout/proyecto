@@ -20,7 +20,7 @@ $resultado = $conexion->query($consulta);
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: url('images/update.jpg') no-repeat center center fixed;
+            background: url('images/fondo_try.jpg') no-repeat center center fixed;
             background-size: cover;
             margin: 0;
             padding: 0;
