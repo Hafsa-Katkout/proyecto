@@ -1,19 +1,13 @@
 <?php
-// Get the ID from the GET request
 $id = $_GET['id'];
-
-// Database connection details
 $host = 'localhost';
 $db = 'proyecto_db';
 $user = 'root';
 $pass = 'Hafsa@2005';
 
 try {
-    // Create a PDO instance
     $conn = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    // Query to fetch the current data of the host
     $stmt = $conn->prepare("SELECT * FROM cisco_machines WHERE id = :id");
     $stmt->bindParam(':id', $id);
     $stmt->execute();
@@ -23,31 +17,20 @@ try {
         die("Host no encontrado");
     }
 
-    // Check if form is submitted
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        // Get the updated values from the form
         $ip = $_POST['ip'];
         $usuario = $_POST['usuario'];
-        $contrasena = $_POST['contrasena']; // Changed to 'contrasena'
+        $contrasena = $_POST['contrasena']; 
 
-        // Update query
         try {
-            // Prepare the update query
             $updateStmt = $conn->prepare("UPDATE cisco_machines SET ip = :ip, usuario = :usuario, contrasena = :contrasena WHERE id = :id");
-
-            // Bind parameters
             $updateStmt->bindParam(':ip', $ip);
             $updateStmt->bindParam(':usuario', $usuario);
-            $updateStmt->bindParam(':contrasena', $contrasena); // Changed to 'contrasena'
-            $updateStmt->bindParam(':id', $id, PDO::PARAM_INT); // Ensure the ID is an integer
-
-            // Execute the query
+            $updateStmt->bindParam(':contrasena', $contrasena); 
+            $updateStmt->bindParam(':id', $id, PDO::PARAM_INT);
             $updateStmt->execute();
-
-            // If the update was successful, redirect to windows_espacio.php
             header('Location: configuracion_cisco.php');
-            exit; // Make sure to stop the execution after redirect
-
+            exit; 
         } catch (PDOException $e) {
             echo "Error al actualizar los datos: " . $e->getMessage();
         }
@@ -75,7 +58,7 @@ try {
         }
         .container {
     max-width: 800px;
-    margin: 100px auto 0 auto; /* Añadido margen arriba */
+    margin: 100px auto 0 auto;
     padding: 20px;
     background: rgba(255, 255, 255, 0.8);
     border-radius: 8px;

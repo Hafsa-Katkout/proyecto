@@ -152,7 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 5px;
-    text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.6), 0px 0px 15px rgba(0, 0, 0, 0.4); /* White shadow with a soft black shadow */
+    text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.6), 0px 0px 15px rgba(0, 0, 0, 0.4); 
     margin: 20px auto 40px auto;
     padding: 10px 20px;
     border: 3px solid white; /* White border */
@@ -221,7 +221,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </div>
         <div class="right-section">
-    <div class="company-name">SysFero</div> <!-- Replaced logo with company name -->
+    <div class="company-name">SysFero</div> 
     <ul class="menu">
         <li><a href="index.php">Inicio</a></li>
         <li><a href="sobrenosotros.html">Sobre nosotros</a></li>

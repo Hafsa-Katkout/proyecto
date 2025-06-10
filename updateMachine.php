@@ -1,13 +1,12 @@
 <?php
-// Conexión a la base de datos
 $conexion = new mysqli("localhost", "root", "Hafsa@2005", "proyecto_db");
 
-// Verificamos la conexión
+
 if ($conexion->connect_error) {
     die("Error de conexión: " . $conexion->connect_error);
 }
 
-// Consultamos todas las máquinas
+
 $consulta = "SELECT * FROM datos";
 $resultado = $conexion->query($consulta);
 ?>
@@ -186,7 +185,7 @@ $resultado = $conexion->query($consulta);
                     <td><?php echo $fila['usuario']; ?></td>
                     <td><?php echo $fila['ruta_clave']; ?></td>
                     <td>
-                        <!-- Botón para ejecutar Playbook -->
+
                         <form action="executeUpdate.php" method="post" style="display:inline;">
                             <input type="hidden" name="ip" value="<?php echo $fila['ip']; ?>">
                             <input type="hidden" name="usuario" value="<?php echo $fila['usuario']; ?>">
@@ -194,7 +193,7 @@ $resultado = $conexion->query($consulta);
                             <button type="submit" class="boton boton-play">Ejecutar Playbook</button>
                         </form>
 
-                        <!-- Botón para editar -->
+
                         <form action="modificarMachine2.php" method="get" style="display:inline;">
                             <input type="hidden" name="id" value="<?php echo $fila['id']; ?>">
                             <button type="submit" class="boton boton-editar">Modificar</button>
@@ -210,7 +209,7 @@ $resultado = $conexion->query($consulta);
 
     </table>
 
-    <!-- Botón para añadir nueva máquina -->
+
     <a href="addMachine2.php" class="boton-agregar">Añadir nueva máquina</a>
     <div class="botones-superiores">
         <a href="dashboard.php" class="boton-navegacion">Volver</a>

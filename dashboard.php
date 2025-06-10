@@ -84,7 +84,6 @@
             margin-top: 25px;
         }
 
-        /* Botones superiores izquierdos fijos y más grandes */
         .top-left-buttons {
             position: fixed;
             top: 20px;
@@ -109,12 +108,12 @@
 </head>
 <body>
 
-    <!-- BOTONES SUPERIORES IZQUIERDOS FIJOS Y GRANDES -->
+   
     <div class="top-left-buttons">
         <a href="index.php" class="backup-button">Inicio</a>
         <a href="ayuda.html" class="backup-button">Ayuda</a>
     </div>
-    <!-- NUEVO BOTÓN SUPERIOR DERECHO -->
+
     <div class="top-right-button">
         <a href="registro.php" class="backup-button">Añadir Controlador</a>
     </div>
@@ -131,7 +130,6 @@
         <a href="windows_info.php" class="backup-button">Consulta de información del sistema en Windows</a>
         <a href="configuracion_cisco.php" class="backup-button">Visualizar la Configuración Actual del Router Cisco</a>
 
-        <!-- Contenido extra para probar el scroll -->
         <div style="height: 800px;"></div>
 
     </div>

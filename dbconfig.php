@@ -1,7 +1,7 @@
 <?php
 $servidor = "localhost";
-$usuario = "root"; // Cambiar si se usa otro usuario
-$contrasena = "Hafsa@2005";  // Cambiar si se tiene una contraseña para el usuario root
+$usuario = "root";
+$contrasena = "Hafsa@2005";  
 $basededatos = "proyecto_db";
 
 try {

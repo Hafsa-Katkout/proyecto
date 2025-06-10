@@ -28,7 +28,7 @@ try {
     <style>
     body {
         font-family: Arial, sans-serif;
-        background-image: url('/images/windows_espacio_back.jpg'); /* Replace with your background image URL */
+        background-image: url('/images/windows_espacio_back.jpg'); 
         background-size: cover;
         background-position: center;
         padding: 20px;
@@ -38,15 +38,15 @@ try {
     table {
         border-collapse: collapse;
         width: 100%;
-        background: rgba(255, 255, 255, 0.8); /* Transparent white background */
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* White shadow effect on table */
+        background: rgba(255, 255, 255, 0.8); 
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); 
         border-radius: 10px;
         margin-top: 20px;
     }
 
     th, td {
         padding: 12px;
-        border-bottom: 2px solid #f0f0f0; /* Light gray border between rows */
+        border-bottom: 2px solid #f0f0f0; 
         text-align: center;
     }
 
@@ -63,39 +63,39 @@ try {
     .btn {
         padding: 12px 25px;
         text-decoration: none;
-        color: black; /* Black text inside */
-        background-color: white; /* Solid white background */
-        border-radius: 25px; /* Attractive rounded shape */
+        color: black;
+        background-color: white; 
+        border-radius: 25px;
         font-size: 16px;
         display: inline-block;
         text-align: center;
         margin: 5px 10px;
-        border: 2px solid black; /* Black border */
+        border: 2px solid black;
         transition: background-color 0.3s ease, color 0.3s ease;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
     }
 
     .btn-ver {
-        border-color: black; /* Black border for "Ver detalles" */
-        color: black; /* Black text */
+        border-color: black; 
+        color: black;
     }
 
     .btn-accion {
-        border-color: black; /* Black border for "Ejecutar acción" */
-        color: black; /* Black text */
+        border-color: black;
+        color: black;
     }
 
     .btn:hover {
-        background-color: #b3e0ff; /* Sky blue close to white */
-        color: white; /* White text on hover */
-        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+        background-color: #b3e0ff;
+        color: white; 
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); 
     }
 
     h2 {
         text-align: center;
         color: #fff;
         font-size: 2em;
-        text-shadow: 2px 2px 10px rgba(0,0,0,0.5); /* Adding shadow for impressive text */
+        text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
     }
 
     .container {
@@ -104,7 +104,7 @@ try {
         padding: 20px;
     }
     .btn-add {
-    background-color:rgb(83, 196, 238); /* Bootstrap green */
+    background-color:rgb(83, 196, 238); 
     color: white;
     font-weight: bold;
     border-color:rgb(83, 196, 238);
@@ -194,9 +194,9 @@ try {
                             <input type="hidden" name="password" value="<?= htmlspecialchars($host['contrasena']) ?>">
                         </form>
 
-<a class="btn btn-accion" href="#" onclick="document.getElementById('form-ejecutar-<?= $host['id'] ?>').submit();">
-    Ejecutar acción
-</a>
+                    <a class="btn btn-accion" href="#" onclick="document.getElementById('form-ejecutar-<?= $host['id'] ?>').submit();">
+                     Ejecutar acción
+                    </a>
 
                     </td>
                 </tr>
