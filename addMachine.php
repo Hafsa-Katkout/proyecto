@@ -1,10 +1,7 @@
 <?php
-// Mostrar errores para depuración
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
-// Conexión a la base de datos
 $host = 'localhost';
 $db = 'proyecto_db';
 $user = 'root';
@@ -17,9 +14,8 @@ try {
     die("Error de conexión: " . $e->getMessage());
 }
 
-// Procesar formulario solo si fue enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    ob_start(); // Iniciar buffer para que header funcione luego
+    ob_start(); 
 
     $ip = $_POST['ip'] ?? '';
     $usuario = $_POST['usuario'] ?? '';
@@ -27,17 +23,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!empty($ip) && !empty($usuario) && !empty($clave_privada)) {
         try {
-            // Verificar si ya existe
+
             $stmt = $conn->prepare("SELECT id FROM datos WHERE ip = ? AND usuario = ? AND clave_privada = ?");
             $stmt->execute([$ip, $usuario, $clave_privada]);
             $existing = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($existing) {
-                // Redirigir si ya existe
-                header("Location: ejecutar.php?id=" . $existing['id']);
+                header("Location: backupMachine.php?id=" . $existing['id']);
                 exit();
             } else {
-                // Generar ruta única
                 $base_path = "/home/ubuntu/.ssh/clave";
                 $ruta_clave = $base_path;
                 $counter = 1;
@@ -52,15 +46,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $counter++;
                     $ruta_clave = $base_path . $counter;
                 }
-
-                // Insertar en la base de datos
                 $insert = $conn->prepare("INSERT INTO datos (ip, usuario, clave_privada, ruta_clave, fecha_registro) VALUES (?, ?, ?, ?, NOW())");
                 $insert->execute([$ip, $usuario, $clave_privada, $ruta_clave]);
 
                 $new_id = $conn->lastInsertId();
-
-                // Redirigir al archivo ejecutar.php
-                header("Location: ejecutar.php?id=$new_id");
+                header("Location: backupMachine.php?id=$new_id");
                 exit();
             }
         } catch (PDOException $e) {
@@ -70,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error_message = "Todos los campos son obligatorios.";
     }
 
-    ob_end_clean(); // Detener buffer para evitar conflictos con header()
+    ob_end_clean();
 }
 ?>
 
@@ -80,7 +70,110 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Añadir nueva máquina</title>
     <style>
-        /* Igual que antes (puedes mantener tu estilo original) */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url('images/addupdate2.jpg');
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 15px;
+            display: block;
+            color: #444;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+        }
+
+        input[type="submit"] {
+            margin-top: 25px;
+            padding: 12px;
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        .botones-superiores {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+    }
+
+    .boton-navegacion {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 5px;
+        font-size: 14px;
+        font-weight: bold;
+        color: white;
+        background-color: transparent;
+        border: 2px solid white;
+        border-radius: 6px;
+        text-decoration: none;
+        box-shadow: 0 0 8px white;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .boton-navegacion:hover {
+        background-color: #e0f7ff;
+        color: #007bff;
+    }
+
     </style>
 </head>
 <body>

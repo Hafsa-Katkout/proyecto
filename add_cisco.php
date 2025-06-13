@@ -1,5 +1,4 @@
 <?php
-// Conexión con la base de datos
 $host = 'localhost';
 $db = 'proyecto_db';
 $user = 'root';
@@ -22,7 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $conn->prepare("INSERT INTO cisco_machines(ip, usuario, contrasena, tiempo_creacion) VALUES (?, ?, ?, NOW())");
     $stmt->execute([$ip, $usuario, $contrasena]);
 
-    // Redireccionar de vuelta al listado después de insertar
     header("Location: configuracion_cisco.php");
     exit;
 }

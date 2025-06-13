@@ -1,5 +1,4 @@
 <?php
-// Conexión con la base de datos
 $host = 'localhost';
 $db = 'proyecto_db';
 $user = 'root';
@@ -21,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $conn->prepare("INSERT INTO windows_hosts (ip, usuario, contrasena, tiempo_creación) VALUES (?, ?, ?, NOW())");
     $stmt->execute([$ip, $usuario, $contrasena]);
 
-    // Redireccionar de vuelta al listado después de insertar
+
     header("Location: windows_espacio.php");
     exit;
 }
