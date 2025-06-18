@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->execute([$ip, $usuario, $contrasena]);
 
     // Redireccionar de vuelta al listado después de insertar
-    header("Location: windows_update.php");
+    header("Location: windows_info.php");
     exit;
 }
 ?>
